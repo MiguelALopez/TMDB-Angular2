@@ -3,9 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 // Modules for UI elements
-import {MdListModule} from '@angular/material'
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {CovalentLayoutModule} from '@covalent/core';
+import {AppCustomMaterialModule} from './Modules/app-custom-material.module'
 
 // Own modules
 import { AppComponent } from './Components/app/app.component';
@@ -16,9 +14,7 @@ import { AppComponent } from './Components/app/app.component';
   ],
   imports: [
     BrowserModule,
-    MdListModule,
-    BrowserAnimationsModule,
-    CovalentLayoutModule
+    AppCustomMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,9 +1,113 @@
-<td-layout-nav toolbarTitle="Cinemania" logo="logo" icon="icon" color="primary" navigationRoute="/">
-  <div td-toolbar-content>
-    <!--.. main toolbar content-->
-  </div>
-    Content
-  <td-layout-footer color="primary">
-    Footer
-  </td-layout-footer>
-</td-layout-nav>
+<td-layout #layout>
+  <td-navigation-drawer sidenavTitle="Cinemania">
+    <md-nav-list>
+      <ng-template let-item let-last="last" ngFor [ngForOf]="routes">
+        <a md-list-item (click)="layout.close()"><md-icon>{{item.icon}}</md-icon>{{item.title}}</a>
+      </ng-template>
+    </md-nav-list>
+
+  </td-navigation-drawer>
+  <td-layout-nav color="none" >
+    <div td-toolbar-content layout="row" layout-align="start center" flex>
+      <span hide-gt-xs class="tc-grey-900 md-title">Cinemania <md-icon class="md-icon-logo" svgIcon="assets:tmdb"></md-icon></span>
+      <span hide-xs class="tc-grey-900 md-display-1 ">Cinemania <md-icon class="md-icon-logo tc-deep-orange-500" svgIcon="assets:tmdb"></md-icon></span>
+      <span flex ></span>
+
+    </div>
+    <md-toolbar class="pad-none">
+      <nav  md-stretch-tabs md-tab-nav-bar class="pull-bottom-xl pull-top-md text-upper" flex>
+        <a md-tab-link [active]="true">
+          <span hide-xs>Top Movies</span>
+          <span hide-gt-xs><md-icon>local_movies</md-icon></span>
+        </a>
+        <a md-tab-link>
+          <span hide-xs>Genres</span>
+          <span hide-gt-xs><md-icon>view_carousel</md-icon></span>
+        </a>
+        <a md-tab-link>
+          <span hide-xs>People</span>
+          <span hide-gt-xs><md-icon>person</md-icon></span>
+        </a>
+        <a md-tab-link>
+          <span hide-xs>Tv - Series</span>
+          <span hide-gt-xs><md-icon>tv</md-icon></span>
+        </a>
+        <a md-tab-link>
+          <span hide-xs>A - Z list</span>
+          <span hide-gt-xs><md-icon>sort_by_alpha</md-icon></span>
+        </a>
+      </nav>
+    </md-toolbar>
+
+
+    <!--******************* Start footer content *******************-->
+    <td-layout-footer class="bgc-blue-grey-800 tc-blue-grey-100">
+      <div layout-gt-xs="row" layout-align-gt-xs="center center">
+        <div layout-gt-sm="row" flex-gt-xs="75" layout-margin layout-padding>
+          <div flex>
+            <md-nav-list>
+              <h3 md-subheader class="text-upper tc-blue-grey-100">Movies</h3>
+              <md-list-item>
+                <p md-line class="tc-blue-grey-300">Popular</p>
+              </md-list-item>
+              <md-list-item>
+                <p md-line class="tc-blue-grey-300">Top Rated</p>
+              </md-list-item>
+              <md-list-item>
+                <p md-line class="tc-blue-grey-300">Upcoming</p>
+              </md-list-item>
+              <md-list-item>
+                <p md-line class="tc-blue-grey-300">Now Playing</p>
+              </md-list-item>
+            </md-nav-list>
+          </div>
+          <div flex>
+            <md-nav-list>
+              <h3 md-subheader class="text-upper tc-blue-grey-100">Tv shows</h3>
+              <md-list-item>
+                <p md-line class="tc-blue-grey-300">Popular</p>
+              </md-list-item>
+              <md-list-item>
+                <p md-line class="tc-blue-grey-300">Top Rated</p>
+              </md-list-item>
+              <md-list-item>
+                <p md-line class="tc-blue-grey-300">On TV</p>
+              </md-list-item>
+              <md-list-item>
+                <p md-line class="tc-blue-grey-300">Airing Today</p>
+              </md-list-item>
+            </md-nav-list>
+          </div>
+          <div flex>
+            <md-nav-list>
+              <h3 md-subheader class="text-upper tc-blue-grey-100">People</h3>
+              <md-list-item>
+                <p md-line class="tc-blue-grey-300">Popular People</p>
+              </md-list-item>
+            </md-nav-list>
+          </div>
+          <div flex>
+            <md-nav-list>
+              <h3 md-subheader class="text-upper tc-blue-grey-100">About</h3>
+              <md-list-item>
+                <p md-line class="tc-blue-grey-300">The Application</p>
+              </md-list-item>
+              <md-list-item>
+                <p md-line class="tc-blue-grey-300">The Author</p>
+              </md-list-item>
+
+            </md-nav-list>
+          </div>
+          <div flex-gt-xs="10">
+          </div>
+          <div flex layout="column" flex-gt-xs="30">
+            <md-icon class="push-top-md" svgIcon="assets:tmdb" style="height:auto;width:auto;"></md-icon>
+            <p class="md-body-1">&copy; Copyright 2017 Fish Team Developers All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+    </td-layout-footer>
+    <!--******************* End footer content *******************-->
+
+  </td-layout-nav>
+</td-layout>
