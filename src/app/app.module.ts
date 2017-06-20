@@ -3,9 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 // Modules for UI elements
-import {AppCustomMaterialModule} from './Modules/app-custom-material.module'
+import {AppCustomMaterialModule} from './Modules/app-custom-material.module';
 
 // Own modules
+import {AppRoutingModule} from './Modules/app-routing.module';
+
 import { AppComponent } from './Components/app/app.component';
 
 @NgModule({
@@ -14,6 +16,7 @@ import { AppComponent } from './Components/app/app.component';
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     AppCustomMaterialModule
   ],
   providers: [],

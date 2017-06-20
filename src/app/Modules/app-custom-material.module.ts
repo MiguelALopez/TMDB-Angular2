@@ -9,6 +9,7 @@ import {MdTabsModule} from '@angular/material';
 import {MdToolbarModule} from '@angular/material';
 import {CovalentLayoutModule} from '@covalent/core';
 import {CovalentMenuModule} from '@covalent/core';
+import { CovalentSearchModule } from '@covalent/core';
 import {CovalentHttpModule} from '@covalent/http';
 
 // import {MdCardModule} from '@angular/material';
@@ -30,6 +31,7 @@ import {CovalentHttpModule} from '@covalent/http';
     MdToolbarModule,
     CovalentLayoutModule,
     CovalentMenuModule,
+    CovalentSearchModule,
     CovalentHttpModule,
 
     // MdCardModule,
@@ -51,6 +53,7 @@ import {CovalentHttpModule} from '@covalent/http';
     MdToolbarModule,
     CovalentLayoutModule,
     CovalentMenuModule,
+    CovalentSearchModule,
     CovalentHttpModule
   ]
 })

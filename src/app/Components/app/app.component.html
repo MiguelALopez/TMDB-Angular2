@@ -12,6 +12,8 @@
       <span hide-gt-xs class="tc-grey-900 md-title">Cinemania <md-icon class="md-icon-logo" svgIcon="assets:tmdb"></md-icon></span>
       <span hide-xs class="tc-grey-900 md-display-1 ">Cinemania <md-icon class="md-icon-logo tc-deep-orange-500" svgIcon="assets:tmdb"></md-icon></span>
       <span flex ></span>
+      <td-search-box backIcon="arrow_back" placeholder="Search for movies, series or people" [showUnderline]="true" [debounce]="500" [alwaysVisible]="true" (searchDebounce)="searchInputTerm = $event" (search)="searchInputTerm = $event" (clear)="searchInputTerm = ''">
+      </td-search-box>
 
     </div>
     <md-toolbar class="pad-none">
@@ -39,6 +41,7 @@
       </nav>
     </md-toolbar>
 
+    <router-outlet></router-outlet>
 
     <!--******************* Start footer content *******************-->
     <td-layout-footer class="bgc-blue-grey-800 tc-blue-grey-100">
