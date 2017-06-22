@@ -11,6 +11,7 @@ import {CovalentLayoutModule} from '@covalent/core';
 import {CovalentMenuModule} from '@covalent/core';
 import {CovalentSearchModule} from '@covalent/core';
 import {CovalentHttpModule} from '@covalent/http';
+import {CovalentMediaModule} from '@covalent/core';
 
 // import {MdCardModule} from '@angular/material';
 // import {MdInputModule} from '@angular/material';
@@ -18,10 +19,9 @@ import {CovalentHttpModule} from '@covalent/http';
 // import {MdSidenavModule} from '@angular/material';
 // import {MdTooltipModule} from '@angular/material';
 // import {MdDialogModule} from '@angular/material';
-// import {CovalentMediaModule} from '@covalent/core';
 
 @NgModule({
-  imports:[
+  imports: [
     // UI modules
     BrowserAnimationsModule,
     MdListModule,
@@ -33,6 +33,7 @@ import {CovalentHttpModule} from '@covalent/http';
     CovalentMenuModule,
     CovalentSearchModule,
     CovalentHttpModule,
+    CovalentMediaModule
 
     // MdCardModule,
     // MdInputModule,
@@ -44,7 +45,7 @@ import {CovalentHttpModule} from '@covalent/http';
     // CovalentNotificationsModule,
 
   ],
-  exports:[
+  exports: [
     BrowserAnimationsModule,
     MdListModule,
     MdIconModule,
@@ -54,8 +55,9 @@ import {CovalentHttpModule} from '@covalent/http';
     CovalentLayoutModule,
     CovalentMenuModule,
     CovalentSearchModule,
-    CovalentHttpModule
+    CovalentHttpModule,
+    CovalentMediaModule
   ]
 })
 
-export class AppCustomMaterialModule{}
+export class AppCustomMaterialModule {}
