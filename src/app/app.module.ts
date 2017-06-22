@@ -8,11 +8,14 @@ import {AppCustomMaterialModule} from './Modules/app-custom-material.module';
 // Own modules
 import {AppRoutingModule} from './Modules/app-routing.module';
 
-import { AppComponent } from './Components/app/app.component';
+// Own Components
+import {AppComponent} from './Components/app/app.component';
+import {TopMoviesComponent} from './Components/top-movies/top-movies.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TopMoviesComponent
   ],
   imports: [
     BrowserModule,
