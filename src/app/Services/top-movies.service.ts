@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 import {CREDENTIALS} from '../Static/credentials'
 
 import 'rxjs/add/operator/toPromise';
@@ -10,7 +12,7 @@ export class TopMoviesService {
   constructor(private  http: Http) {
   }
 
-  getMovies(page: number): Promise<JSON> {
+  getMovies(page: number): Observable<JSON> {
     const url = CREDENTIALS.apiUrl +
       '3/discover/' +
       'movie?api_key=' + CREDENTIALS.apiKey +
@@ -19,9 +21,7 @@ export class TopMoviesService {
       '&include_adult=false' +
       '&include_video=false' +
       '&page=' + page;
-
-    return this.http.get(url).toPromise().then(response => response.json());
-
+    return this.http.get(url).map(response => response.json());
   }
 
 }

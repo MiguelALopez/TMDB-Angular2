@@ -11,11 +11,13 @@ import {AppRoutingModule} from './Modules/app-routing.module';
 // Own Components
 import {AppComponent} from './Components/app/app.component';
 import {TopMoviesComponent} from './Components/top-movies/top-movies.component';
+import {MovieComponent} from './Components/movie/movie.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TopMoviesComponent
+    TopMoviesComponent,
+    MovieComponent
   ],
   imports: [
     BrowserModule,

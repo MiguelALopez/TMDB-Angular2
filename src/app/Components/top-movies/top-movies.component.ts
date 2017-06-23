@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {TopMoviesService} from '../../Services/top-movies.service';
 import {CREDENTIALS} from '../../Static/credentials';
 import {GENRES} from '../../Static/genres';
-import { IPageChangeEvent } from '@covalent/core';
-import {debug} from "util";
+import {IPageChangeEvent} from '@covalent/core';
 
 @Component({
   selector: 'app-top-movies',
@@ -28,13 +27,12 @@ export class TopMoviesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.topMoviesService.getMovies(1).then(movies => {
+    this.topMoviesService.getMovies(1).subscribe(movies => {
       this.response = movies;
       this.movies = movies['results'];
       this.page = movies['page'];
       this.total_pages = movies['total_pages'];
       this.total_results = movies['total_results'];
-      console.log(this.response);
     });
 
   }
@@ -53,18 +51,12 @@ export class TopMoviesComponent implements OnInit {
 
   change(event: IPageChangeEvent): void {
     this.event = event;
-    this.topMoviesService.getMovies(event.page).then(movies => {
+    this.topMoviesService.getMovies(event.page).subscribe(movies => {
       this.response = movies;
       this.movies = movies['results'];
       this.page = movies['page'];
       this.total_pages = movies['total_pages'];
       this.total_results = movies['total_results'];
     });
-    console.log(event.page);
   }
-
-  toggleFirstLast(): void {
-    this.firstLast = !this.firstLast;
-  }
-
 }
