@@ -10,13 +10,17 @@ export class TopMoviesService {
   constructor(private  http: Http) {
   }
 
-  getMovies(): Promise<JSON> {
+  getMovies(page: number): Promise<JSON> {
     const url = CREDENTIALS.apiUrl +
-      '3/discover/movie?api_key=' +
-      CREDENTIALS.apiKey +
-      '&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1';
+      '3/discover/' +
+      'movie?api_key=' + CREDENTIALS.apiKey +
+      '&language=en-US' +
+      '&sort_by=popularity.desc' +
+      '&include_adult=false' +
+      '&include_video=false' +
+      '&page=' + page;
 
-    return this.http.get(url).toPromise().then(response => response.json().results);
+    return this.http.get(url).toPromise().then(response => response.json());
 
   }
 

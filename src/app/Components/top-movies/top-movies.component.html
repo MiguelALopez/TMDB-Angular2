@@ -14,13 +14,24 @@
             <div layout="column" flex="70" tdMediaToggle="gt-sm" [mediaClasses]="['pad-top-lg', 'pad-bottom-lg']">
               <div layout="row" tdMediaToggle="gt-sm" [mediaClasses]="['pad-bottom-sm']">
                 <div flex layout="column">
-                  <h3 class="md-headline tc-grey-800 push-top-none push-bottom-none">{{movie.original_title}}</h3>
-                  <i class="md-button tc-grey-600">{{getGenre(movie.genre_ids)}}</i>
+                  <div layout="row">
+                    <h3 flex class="md-headline tc-grey-800 push-top-none push-bottom-none">{{movie.original_title}}</h3>
+                    <div layout="row" layout-align="end center">
+                      <span>{{movie.vote_average}}</span>
+                      <md-icon class="tc-grey-800">star</md-icon>
+                    </div>
+                  </div>
+
+                  <div layout="row">
+                    <div flex layout="row">
+                      <!--<md-icon layout-align="center end" md-font-icon="fa-calendar" class="fa tc-grey-800"></md-icon>-->
+                      <md-icon  class="md-24 fa-md tc-grey-800"  fontSet="fa" fontIcon="fa-calendar"></md-icon>
+                      <small layout-align="center center" class="tc-grey-800 md-button">{{movie.release_date}}</small>
+                    </div>
+                    <i class="md-button tc-grey-600">{{getGenre(movie.genre_ids)}}</i>
+                  </div>
                 </div>
-                <div layout="row" layout-align="end center">
-                  <span>{{movie.vote_average}}</span>
-                  <md-icon class="tc-grey-800">star</md-icon>
-                </div>
+
               </div>
               <span>{{movie.overview}}</span>
             </div>
@@ -28,6 +39,11 @@
           </div>
           <md-divider></md-divider>
         </div>
+        <td-paging-bar #pagingBar pageSizeAllText="All" [pageSizeAll]="pageSizeAll" [pageSizes]="[10]" pageLinkCount="5"
+                       [initialPage]="1" [firstLast]="firstLast" [total]="10000" (change)="change($event)">
+          <span td-paging-bar-label hide-xs>Row per page:</span>
+          {{pagingBar.range}} <span hide-xs>of {{pagingBar.total}}</span>
+        </td-paging-bar>
         <!--<p class="md-subhead tc-grey-600">Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</p>-->
         <!--<button md-raised-button color="accent" class="push-bottom mat-button-lg text-upper">Call to Action</button>-->
       </div>

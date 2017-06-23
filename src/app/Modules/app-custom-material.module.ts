@@ -4,6 +4,7 @@ import {NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdListModule} from '@angular/material'
 import {MdIconModule} from '@angular/material';
+import {MdIconRegistry} from '@angular/material'
 import {MdMenuModule} from '@angular/material';
 import {MdTabsModule} from '@angular/material';
 import {MdToolbarModule} from '@angular/material';
@@ -12,6 +13,7 @@ import {CovalentMenuModule} from '@covalent/core';
 import {CovalentSearchModule} from '@covalent/core';
 import {CovalentHttpModule} from '@covalent/http';
 import {CovalentMediaModule} from '@covalent/core';
+import {CovalentPagingModule} from '@covalent/core';
 
 // import {MdCardModule} from '@angular/material';
 // import {MdInputModule} from '@angular/material';
@@ -33,7 +35,8 @@ import {CovalentMediaModule} from '@covalent/core';
     CovalentMenuModule,
     CovalentSearchModule,
     CovalentHttpModule,
-    CovalentMediaModule
+    CovalentMediaModule,
+    CovalentPagingModule
 
     // MdCardModule,
     // MdInputModule,
@@ -56,8 +59,13 @@ import {CovalentMediaModule} from '@covalent/core';
     CovalentMenuModule,
     CovalentSearchModule,
     CovalentHttpModule,
-    CovalentMediaModule
+    CovalentMediaModule,
+    CovalentPagingModule
   ]
 })
 
-export class AppCustomMaterialModule {}
+export class AppCustomMaterialModule {
+  constructor(mdIconRegistriy: MdIconRegistry) {
+    mdIconRegistriy.registerFontClassAlias('fontawesome', 'fa');
+  }
+}
