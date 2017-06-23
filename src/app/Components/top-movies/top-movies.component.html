@@ -15,15 +15,13 @@
               <div layout="row" tdMediaToggle="gt-sm" [mediaClasses]="['pad-bottom-sm']">
                 <div flex layout="column">
                   <h3 class="md-headline tc-grey-800 push-top-none push-bottom-none">{{movie.original_title}}</h3>
-                  <i class="md-button tc-grey-600">Action</i>
+                  <i class="md-button tc-grey-600">{{getGenre(movie.genre_ids)}}</i>
                 </div>
                 <div layout="row" layout-align="end center">
                   <span>{{movie.vote_average}}</span>
                   <md-icon class="tc-grey-800">star</md-icon>
                 </div>
               </div>
-
-
               <span>{{movie.overview}}</span>
             </div>
 

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
-import {CREDENTIALS} from './credentials'
+import {CREDENTIALS} from '../Static/credentials'
 
 import 'rxjs/add/operator/toPromise';
 
