@@ -20,3 +20,9 @@ $theme: mat-light-theme($primary, $accent, $warn);
 // (optional) Additional themes
 @include covalent-markdown-theme($theme);
 @include covalent-highlight-theme();
+
+// Personal styles
+.img-poster:hover{
+  transition: .2s ease;
+  box-shadow: 0 1px 8px black;
+}

@@ -1,0 +1,21 @@
+<section>
+  <div layout="row">
+    <div flex="30" tdMediaToggle="gt-sm" [mediaClasses]="['pad-lg']">
+      <img src="{{cred.apiImg + movie['poster_path']}}" class="img-responsive img-rounded img-poster">
+    </div>
+    <div flex="70" class="push-top-lg push-bottom-lg push-right-lg"
+             tdMediaToggle="gt-sm" [mediaClasses]="['pad-lg']">
+      <div layout="column">
+        <h1 class="push-bottom-none">{{movie['original_title']}}</h1>
+        <i class="text-micro tc-grey-600">{{getGenre(movie['genres'])}}</i>
+      </div>
+      <div>
+
+      </div>
+      <h3 class="md-headline tc-grey-800 push-top-md push-bottom-sm">Overview</h3>
+      <span>{{movie['overview']}}</span>
+      <h3 class="md-headline tc-grey-800 push-top-lg push-bottom-sm">Featured Crew</h3>
+
+    </div>
+  </div>
+</section>

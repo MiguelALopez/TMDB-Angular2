@@ -4,18 +4,22 @@
       <div class="push-top-xl" hide-xs></div>
       <div tdMediaToggle="gt-sm" [mediaClasses]="['push-lg']">
         <!--<h1 class="md-display-1 tc-blue-A400 push-top-xs push-bottom-sm">Top movies</h1>-->
-        <h1 color="primary">Top movies</h1>
+        <h1>Top movies</h1>
         <!--<h2 class="md-headline tc-grey-800 push-top-xs push-bottom-sm">Supporting Secondary Text</h2>-->
         <div layout="column" *ngFor="let movie of movies">
           <div layout="row">
             <div flex="30" layout-align="center start" tdMediaToggle="gt-sm" [mediaClasses]="['pad-lg']">
-              <img src="{{apiImg + movie.poster_path}}" class="img-responsive">
+              <a [routerLink]="['/movie', movie.id]">
+                <img src="{{apiImg + movie.poster_path}}" class="img-responsive img-rounded img-poster">
+              </a>
             </div>
             <div layout="column" flex="70" tdMediaToggle="gt-sm" [mediaClasses]="['pad-top-lg', 'pad-bottom-lg']">
               <div layout="row" tdMediaToggle="gt-sm" [mediaClasses]="['pad-bottom-sm']">
                 <div flex layout="column">
                   <div layout="row">
-                    <h3 flex class="md-headline tc-grey-800 push-top-none push-bottom-none">{{movie.original_title}}</h3>
+                    <a flex [routerLink]="['/movie', movie.id]">
+                      <h3 class="md-headline tc-grey-800 push-top-none push-bottom-none" >{{movie.original_title}}</h3>
+                    </a>
                     <div layout="row" layout-align="end center">
                       <span>{{movie.vote_average}}</span>
                       <md-icon class="tc-grey-800">star</md-icon>
@@ -28,7 +32,7 @@
                       <md-icon  class="md-24 fa-md tc-grey-800"  fontSet="fa" fontIcon="fa-calendar"></md-icon>
                       <small layout-align="center center" class="tc-grey-800 md-button">{{movie.release_date}}</small>
                     </div>
-                    <i class="md-button tc-grey-600">{{getGenre(movie.genre_ids)}}</i>
+                    <i class="text-micro tc-grey-600">{{getGenre(movie.genre_ids)}}</i>
                   </div>
                 </div>
 

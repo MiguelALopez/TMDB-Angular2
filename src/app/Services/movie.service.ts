@@ -5,10 +5,11 @@ import {CREDENTIALS} from '../Static/credentials'
 
 @Injectable()
 export class MovieService {
+
   constructor(private http: Http) {
   }
 
-  getMovie(id: number): Observable<JSON> {
+  getMovie(id: number): Observable<Array<any>> {
     const url = CREDENTIALS.apiUrl +
       '/3/movie/' + id +
       '?api_key=' + CREDENTIALS.apiKey +

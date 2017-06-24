@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TopMoviesService} from '../../Services/top-movies.service';
 import {CREDENTIALS} from '../../Static/credentials';
 import {GENRES} from '../../Static/genres';
@@ -42,7 +42,7 @@ export class TopMoviesComponent implements OnInit {
     for (const id of ids) {
       if (id === ids[ids.length - 1]) {
         genres += GENRES[id];
-      }else {
+      } else {
         genres += GENRES[id] + ', ';
       }
     }
