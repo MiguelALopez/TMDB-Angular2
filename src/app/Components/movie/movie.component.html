@@ -3,18 +3,73 @@
     <div flex="30" tdMediaToggle="gt-sm" [mediaClasses]="['pad-lg']">
       <img src="{{cred.apiImg + movie['poster_path']}}" class="img-responsive img-rounded img-poster">
     </div>
-    <div flex="70" class="push-top-lg push-bottom-lg push-right-lg"
-             tdMediaToggle="gt-sm" [mediaClasses]="['pad-lg']">
-      <div layout="column">
-        <h1 class="push-bottom-none">{{movie['original_title']}}</h1>
-        <i class="text-micro tc-grey-600">{{getGenre(movie['genres'])}}</i>
+    <div flex="50" layout="row" class="push-top-lg push-bottom-lg push-right-lg">
+      <div flex class="push-right-sm">
+        <div layout="column">
+          <h1 class="push-bottom-none">{{movie['original_title']}}</h1>
+          <i class="text-micro tc-grey-600">{{getGenre(movie['genres'])}}</i>
+        </div>
+        <div class="push-top-sm">
+          <div layout="row" layout-align="start center">
+            <span>{{movie['vote_average']}}</span>
+            <md-icon class="tc-grey-800">star</md-icon>
+          </div>
+        </div>
+        <h3 class="md-headline tc-grey-800 push-top-md push-bottom-sm">Overview</h3>
+        <span>{{movie['overview']}}</span>
+        <h3 class="md-headline tc-grey-800 push-top-lg push-bottom-sm">Featured Crew</h3>
       </div>
-      <div>
+    </div>
+    <div flex="20" layout="column" class="pad-lg info">
+      <div layout="column" layout-align="center center">
+        <div>
+          <md-icon class="fa-4x tc-grey-800 default-icon"
+                   fontSet="fa" fontIcon="fa-calendar-o"></md-icon>
+          <div layout="row" layout-align="center center"class="date-calendar" >
+            <md-icon class="fa-lg default-icon" fontSet="fa">
+              {{movie['release_date'] | date:'d'}}</md-icon>
+          </div>
+        </div>
+        <strong class="tc-grey-700 md-button">{{movie['release_date'] | date:'yyyy'}} - {{movie['release_date'] | date:'MMM'}}</strong>
+      </div>
 
-      </div>
-      <h3 class="md-headline tc-grey-800 push-top-md push-bottom-sm">Overview</h3>
-      <span>{{movie['overview']}}</span>
-      <h3 class="md-headline tc-grey-800 push-top-lg push-bottom-sm">Featured Crew</h3>
+      <h3 class="md-headline tc-grey-800 push-top-md push-bottom-none">Additional info</h3>
+
+      <!-- ***************** Runtime *******************-->
+      <strong class="tc-grey-900 push-none push-left-sm push-top-sm">Runtime</strong>
+      <span *ngIf="movie['runtime']; else elseBlock"
+            class="md-body-1 push-none push-left-sm">{{convertTime(movie['runtime'])}}</span>
+      <ng-template #elseBlock class="md-body-1 push-none push-left-sm">No provided</ng-template>
+
+      <!-- ***************** Budget *******************-->
+      <strong class="tc-grey-900 push-none push-left-sm push-top-sm">Budget</strong>
+      <span *ngIf="movie['budget']; else elseBlock"
+            class="md-body-1 push-none push-left-sm">{{convertMoney(movie['budget'])}}</span>
+      <ng-template #elseBlock class="md-body-1 push-none push-left-sm">No provided</ng-template>
+
+      <!-- ***************** Revenue *******************-->
+      <strong class="tc-grey-900 push-none push-left-sm push-top-sm">Budget</strong>
+      <span *ngIf="movie['revenue']; else elseBlock"
+            class="md-body-1 push-none push-left-sm">{{convertMoney(movie['revenue'])}}</span>
+      <ng-template #elseBlock class="md-body-1 push-none push-left-sm">No provided</ng-template>
+
+      <!-- ***************** Homepage *******************-->
+      <strong class=" tc-grey-900 push-none push-left-sm push-top-sm">Homepage</strong>
+      <a *ngIf="movie['homepage']; else elseBlock"
+         class="md-body-1 push-none push-left-sm" href="{{movie['homepage']}}">{{movie['homepage']}}</a>
+      <ng-template #elseBlock class="md-body-1 push-none push-left-sm">No provided</ng-template>
+
+      <!-- ***************** Original language *******************-->
+      <strong class=" tc-grey-900 push-none push-left-sm push-top-sm">Original language</strong>
+      <span *ngIf="movie['original_language']; else elseBlock"
+            class="md-body-1 push-none push-left-sm text-uppercase">{{movie['original_language']}}</span>
+      <ng-template #elseBlock class="md-body-1 push-none push-left-sm">No provided</ng-template>
+
+      <!-- ***************** Status *******************-->
+      <strong class=" tc-grey-900 push-none push-left-sm push-top-sm">Status</strong>
+      <span *ngIf="movie['status']; else elseBlock"
+            class="md-body-1 push-none push-left-sm">{{movie['status']}}</span>
+      <ng-template #elseBlock class="md-body-1 push-none push-left-sm">No provided</ng-template>
 
     </div>
   </div>
