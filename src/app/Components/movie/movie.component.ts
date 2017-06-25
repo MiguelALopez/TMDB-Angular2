@@ -1,32 +1,82 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, NgZone, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import {MovieService} from '../../Services/movie.service';
 import {CREDENTIALS} from '../../Static/credentials';
+
+import {TdMediaService} from '@covalent/core';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-movie',
   templateUrl: './movie.component.html',
   styleUrls: ['./movie.component.css'],
-  providers: [MovieService]
+  providers: [MovieService, TdMediaService]
 })
 
-export class MovieComponent implements OnInit {
+export class MovieComponent implements OnInit, OnDestroy {
+  // Used for responsive services
+  isDesktop: boolean = false;
+  querySize = 'gt-sm';
+  private _querySubscription: Subscription;
+
   cred = CREDENTIALS;
   movie = [];
+  credits = [];
 
   constructor(private movieService: MovieService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private _mediaService: TdMediaService,
+              private _ngZone: NgZone) {
   }
 
   ngOnInit() {
     this.route.params.switchMap((params: Params) => this.movieService
-      .getMovie(params['id']))
+      .getDetails(params['id']))
       .subscribe(movie => {
         this.movie = movie;
-        console.log(this.movie);
+        // console.log(this.movie);
       });
+
+    this.route.params.switchMap((params: Params) => this.movieService
+      .getCredits(params['id']))
+      .subscribe(credits => {
+        this.credits = credits;
+        console.log(this.credits);
+      });
+
+    this.checkScreen();
+    this.watchScreen();
   }
 
+  ngOnDestroy(): void {
+    this._querySubscription.unsubscribe();
+  }
+
+  /**
+   * Check the size of the screen
+   */
+  checkScreen(): void {
+    this._ngZone.run(() => {
+      this.isDesktop = this._mediaService.query(this.querySize);
+    });
+  }
+
+  /**
+   * This method subscribe with the service 'TdMediaService' to detect changes on the size of the screen
+   */
+  watchScreen(): void {
+    this._querySubscription = this._mediaService.registerQuery(this.querySize).subscribe((matches: boolean) => {
+      this._ngZone.run(() => {
+        this.isDesktop = matches;
+      });
+    });
+  }
+
+  /**
+   * In charge to get an array of genres and return its separated by comma
+   * @param genres: Array of genres
+   * @returns {string}: List of genres separated by comma
+   */
   getGenre(genres: Array<any>): string {
     let names = '';
     if(genres){
@@ -41,6 +91,11 @@ export class MovieComponent implements OnInit {
     return names;
   }
 
+  /**
+   * In charge to get time in minutes and return its in the format HH:mm
+   * @param minutes: Integer with the minutes
+   * @returns {string}: Time with the new format
+   */
   convertTime(minutes: number): string {
     let text = '';
     if(minutes){
@@ -53,6 +108,11 @@ export class MovieComponent implements OnInit {
     return text;
   }
 
+  /**
+   * In charge to get a budget and return its with the format of money
+   * @param budget: Integer with the budget
+   * @returns {string}: Budget with the new format
+   */
   convertMoney(budget: number): string{
     let text = '$';
     if(budget){
