@@ -1,7 +1,7 @@
 <section>
   <div layout-gt-md="row" layout-xs="column">
     <!-- *************** Image section *************** -->
-    <div *ngIf="isDesktop; then desktop; else movile;"></div>
+    <div *ngIf="isDesktop; then desktop else movile;"></div>
     <ng-template #desktop>
       <div class="push-lg push-right-none" flex-gt-md="30">
         <img *ngIf="movie['poster_path'] && isDesktop"   src="{{cred.apiImg + movie['poster_path']}}" class="img-responsive img-rounded img-poster">
@@ -67,37 +67,38 @@
         <strong class="tc-grey-900 push-none push-left-sm push-top-sm">Runtime</strong>
         <span *ngIf="movie['runtime']; else elseBlock"
               class="md-body-1 push-none push-left-sm">{{convertTime(movie['runtime'])}}</span>
-        <ng-template #elseBlock class="md-body-1 push-none push-left-sm">No provided</ng-template>
 
         <!-- ***************** Budget *******************-->
         <strong class="tc-grey-900 push-none push-left-sm push-top-sm">Budget</strong>
         <span *ngIf="movie['budget']; else elseBlock"
               class="md-body-1 push-none push-left-sm">{{convertMoney(movie['budget'])}}</span>
-        <ng-template #elseBlock class="md-body-1 push-none push-left-sm">No provided</ng-template>
 
         <!-- ***************** Revenue *******************-->
         <strong class="tc-grey-900 push-none push-left-sm push-top-sm">Budget</strong>
         <span *ngIf="movie['revenue']; else elseBlock"
               class="md-body-1 push-none push-left-sm">{{convertMoney(movie['revenue'])}}</span>
-        <ng-template #elseBlock class="md-body-1 push-none push-left-sm">No provided</ng-template>
 
         <!-- ***************** Homepage *******************-->
         <strong class=" tc-grey-900 push-none push-left-sm push-top-sm">Homepage</strong>
         <a *ngIf="movie['homepage']; else elseBlock"
            class="md-body-1 push-none push-left-sm" href="{{movie['homepage']}}">{{movie['homepage']}}</a>
-        <ng-template #elseBlock class="md-body-1 push-none push-left-sm">No provided</ng-template>
 
         <!-- ***************** Original language *******************-->
         <strong class=" tc-grey-900 push-none push-left-sm push-top-sm">Original language</strong>
         <span *ngIf="movie['original_language']; else elseBlock"
               class="md-body-1 push-none push-left-sm text-uppercase">{{movie['original_language']}}</span>
-        <ng-template #elseBlock class="md-body-1 push-none push-left-sm">No provided</ng-template>
 
         <!-- ***************** Status *******************-->
         <strong class=" tc-grey-900 push-none push-left-sm push-top-sm">Status</strong>
         <span *ngIf="movie['status']; else elseBlock"
               class="md-body-1 push-none push-left-sm">{{movie['status']}}</span>
-        <ng-template #elseBlock class="md-body-1 push-none push-left-sm">No provided</ng-template>
+
+
+        <ng-template #elseBlock>
+          <span class="md-body-1 push-none push-left-sm">
+            No provided
+          </span>
+        </ng-template>
       </div>
 
 

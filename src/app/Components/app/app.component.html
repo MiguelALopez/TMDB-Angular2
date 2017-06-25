@@ -9,8 +9,12 @@
   </td-navigation-drawer>
   <td-layout-nav color="none" >
     <div td-toolbar-content layout="row" layout-align="start center" flex>
-      <span hide-gt-xs class="tc-grey-900 md-title">Cinemania <md-icon class="md-icon-logo" svgIcon="assets:tmdb"></md-icon></span>
-      <span hide-xs class="tc-grey-900 md-display-1 ">Cinemania <md-icon class="md-icon-logo tc-deep-orange-500" svgIcon="assets:tmdb"></md-icon></span>
+      <span hide-gt-xs>
+        <a [routerLink]="['/']" class="tc-grey-900 md-display-1">Cinemania</a>
+        <md-icon class="md-icon-logo" svgIcon="assets:tmdb"></md-icon></span>
+      <span hide-xs >
+        <a [routerLink]="['/']" class="tc-grey-900 md-display-1">Cinemania</a>
+        <md-icon class="md-icon-logo tc-deep-orange-500" svgIcon="assets:tmdb"></md-icon></span>
       <span flex ></span>
       <td-search-box backIcon="arrow_back" placeholder="Search for movies, series or people" [showUnderline]="true" [debounce]="500" [alwaysVisible]="true" (searchDebounce)="searchInputTerm = $event" (search)="searchInputTerm = $event" (clear)="searchInputTerm = ''">
       </td-search-box>
@@ -18,7 +22,7 @@
     </div>
     <md-toolbar class="pad-none">
       <nav  md-stretch-tabs md-tab-nav-bar class="pull-bottom-xl pull-top-md text-upper" flex>
-        <a md-tab-link [active]="true">
+        <a md-tab-link [active]="true" [routerLink]="['/']">
           <span hide-xs>Top Movies</span>
           <span hide-gt-xs><md-icon>local_movies</md-icon></span>
         </a>

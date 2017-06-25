@@ -8,6 +8,7 @@ import {MdIconRegistry} from '@angular/material'
 import {MdMenuModule} from '@angular/material';
 import {MdTabsModule} from '@angular/material';
 import {MdToolbarModule} from '@angular/material';
+import {MdCardModule} from '@angular/material';
 import {CovalentLayoutModule} from '@covalent/core';
 import {CovalentMenuModule} from '@covalent/core';
 import {CovalentSearchModule} from '@covalent/core';
@@ -25,6 +26,7 @@ import {CovalentPagingModule} from '@covalent/core';
     MdMenuModule,
     MdTabsModule,
     MdToolbarModule,
+    MdCardModule,
     CovalentLayoutModule,
     CovalentMenuModule,
     CovalentSearchModule,
@@ -41,6 +43,7 @@ import {CovalentPagingModule} from '@covalent/core';
     MdMenuModule,
     MdTabsModule,
     MdToolbarModule,
+    MdCardModule,
     CovalentLayoutModule,
     CovalentMenuModule,
     CovalentSearchModule,

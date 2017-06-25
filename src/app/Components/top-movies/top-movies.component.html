@@ -1,55 +1,97 @@
 <section>
   <div layout-gt-xs="row">
-    <div flex class="pad" tdMediaToggle="gt-xs" [mediaClasses]="['pad-xl']">
-      <div class="push-top-xl" hide-xs></div>
+    <div flex class="" tdMediaToggle="gt-xs" [mediaClasses]="['pad-xl']">
+      <!--<div class="push-top-xl" hide-xs></div>-->
       <div tdMediaToggle="gt-sm" [mediaClasses]="['push-lg']">
-        <!--<h1 class="md-display-1 tc-blue-A400 push-top-xs push-bottom-sm">Top movies</h1>-->
-        <h1>Top movies</h1>
-        <!--<h2 class="md-headline tc-grey-800 push-top-xs push-bottom-sm">Supporting Secondary Text</h2>-->
-        <div layout="column" *ngFor="let movie of movies">
-          <div layout="row">
-            <div flex="30" layout-align="center start" tdMediaToggle="gt-sm" [mediaClasses]="['pad-lg']">
-              <a [routerLink]="['/movie', movie.id]">
-                <img src="{{apiImg + movie.poster_path}}" class="img-responsive img-rounded img-poster">
-              </a>
-            </div>
-            <div layout="column" flex="70" tdMediaToggle="gt-sm" [mediaClasses]="['pad-top-lg', 'pad-bottom-lg']">
-              <div layout="row" tdMediaToggle="gt-sm" [mediaClasses]="['pad-bottom-sm']">
-                <div flex layout="column">
-                  <div layout="row">
-                    <a flex [routerLink]="['/movie', movie.id]">
-                      <h3 class="md-headline tc-grey-800 push-top-none push-bottom-none" >{{movie.original_title}}</h3>
-                    </a>
-                    <div layout="row" layout-align="end center">
-                      <span>{{movie.vote_average}}</span>
-                      <md-icon class="tc-grey-800">star</md-icon>
-                    </div>
-                  </div>
+        <h1 class="md-display-1 tc-grey-800 ">Top movies</h1>
+        <!--<h1>Top movies</h1>-->
 
-                  <div layout="row">
-                    <div flex layout="row">
-                      <!--<md-icon layout-align="center end" md-font-icon="fa-calendar" class="fa tc-grey-800"></md-icon>-->
-                      <md-icon  class="md-24 fa-md tc-grey-800"  fontSet="fa" fontIcon="fa-calendar"></md-icon>
-                      <small layout-align="center center" class="tc-grey-800 md-button">{{movie.release_date}}</small>
+        <div layout="column" *ngFor="let movie of movies">
+          <div layout="row" layout-align-xs="center center">
+            <div *ngIf="isDesktop; then desktop else movile"></div>
+            <ng-template #desktop>
+              <div flex="30" layout-align="center start" class="pad-lg" tdMediaToggle="sm"
+                   [mediaClasses]="['pad-sm']">
+                <a [routerLink]="['/movie', movie.id]">
+                  <img src="{{apiImg + movie['poster_path']}}" class="img-responsive img-rounded img-poster">
+                </a>
+              </div>
+              <div layout="column" flex="70" tdMediaToggle="{{querySize}}"
+                   [mediaClasses]="['pad-top-lg', 'pad-bottom-lg']">
+                <div layout="row" tdMediaToggle="gt-sm" [mediaClasses]="['pad-bottom-sm']">
+                  <div flex layout="column">
+                    <div layout="row">
+                      <a [routerLink]="['/movie', movie.id]">
+                        <h3 class="md-headline tc-grey-800 push-top-none push-bottom-none">
+                          {{movie['original_title']}}</h3>
+                      </a>
+                      <div flex layout="row" layout-align="end center">
+                        <span>{{movie['vote_average']}}</span>
+                        <md-icon class="tc-grey-800">star</md-icon>
+                      </div>
                     </div>
-                    <i class="text-micro tc-grey-600">{{getGenre(movie.genre_ids)}}</i>
+
+                    <div layout="row">
+                      <div flex layout="row">
+                        <md-icon class="md-24 fa-md tc-grey-800" fontSet="fa" fontIcon="fa-calendar"></md-icon>
+                        <small layout-align="center center" class="tc-grey-800 md-button">{{movie['release_date']}}
+                        </small>
+                      </div>
+                      <i class="text-micro tc-grey-600">{{getGenre(movie['genre_ids'])}}</i>
+                    </div>
                   </div>
                 </div>
-
+                <span>{{movie['overview']}}</span>
               </div>
-              <span>{{movie.overview}}</span>
-            </div>
+              <md-divider></md-divider>
+            </ng-template>
+            <ng-template #movile>
+              <div layout="row" layout-align="center center" flex>
+                <md-card flex class="push-none push-bottom-sm">
+                  <a [routerLink]="['/movie', movie['id]']]">
+                    <img md-card-image src="{{apiImg + movie['backdrop_path']}}">
+                  </a>
+                  <md-card-content>
+                    <div flex layout="column">
+                      <div layout="row">
+                        <a flex [routerLink]="['/movie', movie['id']]">
+                          <h3 class="md-title tc-grey-800 push-top-none push-bottom-none">
+                            {{movie['original_title']}}</h3>
+                        </a>
+                        <div layout="row" layout-align="end center">
+                          <span>{{movie['vote_average']}}</span>
+                          <md-icon class="fa-md tc-grey-800 default-icon" style="width: auto; height: auto"
+                                   fontSet="fa" fontIcon="fa-star"></md-icon>
+                        </div>
+                      </div>
+
+                      <div layout="row">
+                        <i flex class="text-micro tc-grey-600">{{getGenre(movie['genre_ids'])}}</i>
+                        <div layout="row">
+
+                          <small layout-align="center center" class="tc-grey-800 md-button">{{movie['release_date'] |
+                            date:'yyyy'}}
+                            <md-icon class="fa-md tc-grey-600 default-icon push-left-xs" style="width: auto; height: auto"
+                                     fontSet="fa" fontIcon="fa-calendar"></md-icon>
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                  </md-card-content>
+                </md-card>
+              </div>
+            </ng-template>
 
           </div>
-          <md-divider></md-divider>
         </div>
-        <td-paging-bar #pagingBar pageSizeAllText="All" [pageSizeAll]="pageSizeAll" [pageSizes]="[10]" pageLinkCount="5"
+        <td-paging-bar #pagingBar pageSizeAllText="All" [pageSizeAll]="pageSizeAll" [pageSizes]="[10]"
+                       pageLinkCount="{{pageLinkCount}}"
                        [initialPage]="1" [firstLast]="firstLast" [total]="10000" (change)="change($event)">
-          <span td-paging-bar-label hide-xs>Row per page:</span>
-          {{pagingBar.range}} <span hide-xs>of {{pagingBar.total}}</span>
+          <div *ngIf="isDesktop">
+            <span td-paging-bar-label hide-xs>Row per page:</span>
+            {{pagingBar.range}} <span hide-xs>of {{pagingBar.total}}</span>
+          </div>
         </td-paging-bar>
-        <!--<p class="md-subhead tc-grey-600">Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</p>-->
-        <!--<button md-raised-button color="accent" class="push-bottom mat-button-lg text-upper">Call to Action</button>-->
       </div>
       <div class="push-bottom-xl" hide-xs></div>
     </div>
