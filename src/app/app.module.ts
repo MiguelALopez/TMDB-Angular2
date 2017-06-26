@@ -12,12 +12,14 @@ import {AppRoutingModule} from './Modules/app-routing.module';
 import {AppComponent} from './Components/app/app.component';
 import {TopMoviesComponent} from './Components/top-movies/top-movies.component';
 import {MovieComponent} from './Components/movie/movie.component';
+import {ListPeopleComponent} from './Components/list-people/list-people.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopMoviesComponent,
-    MovieComponent
+    MovieComponent,
+    ListPeopleComponent
   ],
   imports: [
     BrowserModule,

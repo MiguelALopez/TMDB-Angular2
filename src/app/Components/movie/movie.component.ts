@@ -19,7 +19,7 @@ export class MovieComponent implements OnInit, OnDestroy {
   querySize = 'gt-sm';
   private _querySubscription: Subscription;
 
-  cred = CREDENTIALS;
+  apiImg = CREDENTIALS.apiImg + 'original';
   movie = [];
   credits = [];
 

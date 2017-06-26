@@ -4,12 +4,12 @@
     <div *ngIf="isDesktop; then desktop else movile;"></div>
     <ng-template #desktop>
       <div class="push-lg push-right-none" flex-gt-md="30">
-        <img *ngIf="movie['poster_path'] && isDesktop"   src="{{cred.apiImg + movie['poster_path']}}" class="img-responsive img-rounded img-poster">
+        <img *ngIf="movie['poster_path'] && isDesktop"   src="{{apiImg + movie['poster_path']}}" class="img-responsive img-rounded img-poster">
       </div>
     </ng-template>
     <ng-template #movile>
       <div class="pad-none" flex layout="row" layout-align="center center">
-        <img *ngIf="movie['backdrop_path'] && !isDesktop" flex src="{{cred.apiImg + movie['backdrop_path']}}" class="img-responsive ">
+        <img *ngIf="movie['backdrop_path'] && !isDesktop" flex src="{{apiImg + movie['backdrop_path']}}" class="img-responsive ">
       </div>
     </ng-template>
 

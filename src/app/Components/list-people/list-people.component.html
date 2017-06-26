@@ -1,0 +1,44 @@
+<section class="container push-top-md">
+  <div layout="column" tdMediaToggle="gt-xs" [mediaClasses]="['pad-xl']">
+    <h1 class="md-display-1 tc-grey-800 ">Most popular people</h1>
+    <!--<div class="row">-->
+      <div *ngFor="let array of matrixPeople" class="row">
+        <div *ngFor="let person of array" class="col-md-3 col-xs-6 pad-none">
+          <md-card>
+            <a [routerLink]="['/person', person['id]']]">
+              <img md-card-image src="{{apiImg + person['profile_path']}}">
+            </a>
+            <md-card-content>
+              <div flex layout="column">
+                <div layout="row">
+                  <a flex [routerLink]="['/person', person['id']]">
+                    <h3 class="md-subhead tc-grey-800 push-top-none push-bottom-none">
+                      {{person['name']}}</h3>
+                  </a>
+                  <!--<div layout="row" layout-align="end center">-->
+                    <!--<span>{{person['vote_average']}}</span>-->
+                    <!--<md-icon class="fa-md tc-grey-800 default-icon" style="width: auto; height: auto"-->
+                             <!--fontSet="fa" fontIcon="fa-star"></md-icon>-->
+                  <!--</div>-->
+                </div>
+                <div layout="row">
+                  <i flex class="text-micro tc-grey-600">{{getMovie(person['known_for'])}}</i>
+                </div>
+              </div>
+            </md-card-content>
+          </md-card>
+        </div>
+
+      </div>
+    <!--</div>-->
+    <td-paging-bar class="push-top-sm" #pagingBar pageSizeAllText="All" [pageSizeAll]="pageSizeAll" [pageSizes]="[20]"
+                   pageLinkCount="{{pageLinkCount}}"
+                   [initialPage]="1" [firstLast]="firstLast" [total]="total_pages * 20" (change)="change($event)">
+      <div *ngIf="isDesktop">
+        <span td-paging-bar-label hide-xs>Row per page:</span>
+        {{pagingBar.range}} <span hide-xs>of {{pagingBar.total}}</span>
+      </div>
+    </td-paging-bar>
+    <div class="push-bottom-xl" hide-xs></div>
+  </div>
+</section>

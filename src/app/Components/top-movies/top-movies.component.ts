@@ -31,7 +31,7 @@ export class TopMoviesComponent implements OnInit, OnDestroy {
   total_results: number;
   response = [];
   movies = [];
-  apiImg = CREDENTIALS.apiImg;
+  apiImg = CREDENTIALS.apiImg + 'w500';
 
   constructor(private topMoviesService: TopMoviesService,
               private _mediaService: TdMediaService,

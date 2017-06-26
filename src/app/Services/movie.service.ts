@@ -27,7 +27,7 @@ export class MovieService {
    * This function obtain the credits of a specific movie, for more information of the api TMDB
    * https://developers.themoviedb.org/3/movies/get-movie-credits
    * @param id: This is the ID of the movie
-   * @returns {Observable<R>}: Results with the detail of a movie
+   * @returns {Observable<R>}: Results with the credits of a specific movie
    */
   getCredits(id: number): Observable<Array<any>> {
     const url = this.url + id + '/credits' +

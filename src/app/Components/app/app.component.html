@@ -22,15 +22,18 @@
     </div>
     <md-toolbar class="pad-none">
       <nav  md-stretch-tabs md-tab-nav-bar class="pull-bottom-xl pull-top-md text-upper" flex>
-        <a md-tab-link [active]="true" [routerLink]="['/']">
+        <a md-tab-link [routerLink]="['movies']" routerLinkActive #mov="routerLinkActive"
+           [active]="mov.isActive">
           <span hide-xs>Top Movies</span>
           <span hide-gt-xs><md-icon>local_movies</md-icon></span>
         </a>
-        <a md-tab-link>
+        <a md-tab-link [routerLink]="['genres']" routerLinkActive #gen="routerLinkActive"
+           [active]="gen.isActive">
           <span hide-xs>Genres</span>
           <span hide-gt-xs><md-icon>view_carousel</md-icon></span>
         </a>
-        <a md-tab-link>
+        <a md-tab-link [routerLink]="['people']" routerLinkActive #peop="routerLinkActive"
+           [active]="peop.isActive">
           <span hide-xs>People</span>
           <span hide-gt-xs><md-icon>person</md-icon></span>
         </a>
