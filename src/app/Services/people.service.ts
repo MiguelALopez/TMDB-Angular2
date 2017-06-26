@@ -13,11 +13,11 @@ export class PeopleService {
 
   /**
    * In charge to send a petition to the api TMDB from with the correspondent URL
-   * @param url
-   * @param args
+   * @param url: This is the route to obtain the resource
+   * @param args: This is the additional arguments to the query, default value empty
    * @returns {Observable<R>}
    */
-  sendRequest(url: string, args: string): Observable<any> {
+  sendRequest(url: string, args = ''): Observable<any> {
     url += ('?api_key=' + CREDENTIALS.apiKey +
     '&language=en-US' + args);
     return this.http.get(url).map(response => response.json());
@@ -32,8 +32,7 @@ export class PeopleService {
    */
   getDetails(person_id: number): Observable<Array<any>> {
     const url = this.url + person_id;
-    const args = '';
-    return this.sendRequest(url, args);
+    return this.sendRequest(url);
   }
 
   /**

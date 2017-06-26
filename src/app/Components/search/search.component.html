@@ -1,0 +1,15 @@
+<div layout="column" class="search">
+  <td-search-box backIcon="arrow_back" placeholder="Search for movies, series or people" [showUnderline]="true"
+                 [debounce]="300" [alwaysVisible]="true" (searchDebounce)="search($event)"
+                 (search)="search($event)" (clear)="clear()">
+  </td-search-box>
+  <div *ngIf="(complete | async)?.length > 0">
+    <ul class="results">
+      <li *ngFor="let result of results | slice:0:5" [ngSwitch]="result['media_type']" class="search-result" >
+        <a *ngSwitchCase="'movie'" [routerLink]="['/movie', result['id']]">{{result['original_title']}}</a>
+        <a *ngSwitchCase="'tv'">{{result['original_name']}}</a>
+        <a *ngSwitchCase="'person'">{{result['name']}}</a>
+      </li>
+    </ul>
+  </div>
+</div>

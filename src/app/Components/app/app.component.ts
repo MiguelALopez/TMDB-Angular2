@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import {DomSanitizer} from '@angular/platform-browser';
 import {MdIconRegistry} from '@angular/material';
@@ -7,8 +7,11 @@ import {MdIconRegistry} from '@angular/material';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styles: [`
-    md-toolbar .mat-icon.md-icon-logo { width: 100px; height: 100px; }
-  `]
+    .z-0{
+      z-index: 0;
+    }
+
+  `],
 })
 export class AppComponent {
   title = 'app';

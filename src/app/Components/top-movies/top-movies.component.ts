@@ -39,7 +39,7 @@ export class TopMoviesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.topMoviesService.getMovies(1).subscribe(movies => {
+    this.topMoviesService.getPopularMovies(1).subscribe(movies => {
       this.response = movies;
       this.movies = movies['results'];
       this.page = movies['page'];
@@ -111,7 +111,7 @@ export class TopMoviesComponent implements OnInit, OnDestroy {
    */
   change(event: IPageChangeEvent): void {
     this.event = event;
-    this.topMoviesService.getMovies(event.page).subscribe(movies => {
+    this.topMoviesService.getPopularMovies(event.page).subscribe(movies => {
       this.response = movies;
       this.movies = movies['results'];
       this.page = movies['page'];

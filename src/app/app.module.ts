@@ -13,13 +13,15 @@ import {AppComponent} from './Components/app/app.component';
 import {TopMoviesComponent} from './Components/top-movies/top-movies.component';
 import {MovieComponent} from './Components/movie/movie.component';
 import {ListPeopleComponent} from './Components/list-people/list-people.component';
+import {SearchComponent} from './Components/search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopMoviesComponent,
     MovieComponent,
-    ListPeopleComponent
+    ListPeopleComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
