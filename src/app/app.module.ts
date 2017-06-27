@@ -10,6 +10,7 @@ import {AppRoutingModule} from './Modules/app-routing.module';
 
 // Own Components
 import {AppComponent} from './Components/app/app.component';
+import {FooterComponent} from './Components/footer/footer.component';
 import {TopMoviesComponent} from './Components/top-movies/top-movies.component';
 import {MovieComponent} from './Components/movie/movie.component';
 import {ListPeopleComponent} from './Components/list-people/list-people.component';
@@ -19,6 +20,7 @@ import {ListSeriesComponent} from './Components/list-series/list-series.componen
 @NgModule({
   declarations: [
     AppComponent,
+    FooterComponent,
     TopMoviesComponent,
     MovieComponent,
     ListPeopleComponent,

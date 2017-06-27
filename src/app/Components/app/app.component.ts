@@ -14,29 +14,25 @@ import {MdIconRegistry} from '@angular/material';
   `],
 })
 export class AppComponent {
-  title = 'app';
+  title = 'Cinemania';
 
   routes: Object[] = [
     {
       title: 'Top Movies',
-      route: '/',
+      route: 'movies',
       icon: 'local_movies',
     }, {
       title: 'Genres',
-      route: '/',
+      route: 'genres',
       icon: 'view_carousel',
     }, {
       title: 'People',
-      route: '/',
+      route: 'people',
       icon: 'person',
     }, {
       title: 'Tv - Series',
-      route: '/',
+      route: 'series',
       icon: 'tv',
-    }, {
-      title: 'A - Z List',
-      route: '/',
-      icon: 'sort_by_alpha',
     },
   ];
 

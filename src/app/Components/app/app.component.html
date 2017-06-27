@@ -1,10 +1,10 @@
 <td-layout #layout>
-  <td-navigation-drawer sidenavTitle="Cinemania">
+  <td-navigation-drawer sidenavTitle="{{title}}">
     <md-nav-list>
       <ng-template let-item let-last="last" ngFor [ngForOf]="routes">
-        <a md-list-item (click)="layout.close()">
-          <md-icon>{{item.icon}}</md-icon>
-          {{item.title}}</a>
+        <a md-list-item [routerLink]="[item['route']]">
+          <md-icon>{{item['icon']}}</md-icon>
+          {{item['title']}}</a>
       </ng-template>
     </md-nav-list>
 
@@ -27,102 +27,16 @@
     </div>
     <md-toolbar class="pad-none z-0 visible">
       <nav md-stretch-tabs md-tab-nav-bar class="pull-bottom-xl pull-top-md text-upper" flex>
-        <a md-tab-link [routerLink]="['movies']" routerLinkActive #mov="routerLinkActive"
-           [active]="mov.isActive">
-          <span hide-xs>Top Movies</span>
+        <a md-tab-link [routerLink]="[route['route']]" routerLinkActive #ni="routerLinkActive"
+           [active]="ni.isActive" *ngFor="let route of routes">
+          <span hide-xs>{{route['title']}}</span>
           <span hide-gt-xs><md-icon>local_movies</md-icon></span>
-        </a>
-        <a md-tab-link [routerLink]="['genres']" routerLinkActive #gen="routerLinkActive"
-           [active]="gen.isActive">
-          <span hide-xs>Genres</span>
-          <span hide-gt-xs><md-icon>view_carousel</md-icon></span>
-        </a>
-        <a md-tab-link [routerLink]="['people']" routerLinkActive #peop="routerLinkActive"
-           [active]="peop.isActive">
-          <span hide-xs>People</span>
-          <span hide-gt-xs><md-icon>person</md-icon></span>
-        </a>
-        <a md-tab-link>
-          <span hide-xs>Tv - Series</span>
-          <span hide-gt-xs><md-icon>tv</md-icon></span>
-        </a>
-        <a md-tab-link>
-          <span hide-xs>A - Z list</span>
-          <span hide-gt-xs><md-icon>sort_by_alpha</md-icon></span>
         </a>
       </nav>
     </md-toolbar>
 
     <router-outlet></router-outlet>
 
-    <!--******************* Start footer content *******************-->
-    <section class="bgc-blue-grey-800 tc-blue-grey-100">
-      <div layout-gt-xs="row" layout-align-gt-xs="center center">
-        <div layout-gt-sm="row" flex-gt-xs="75" layout-margin layout-padding>
-          <div flex>
-            <md-nav-list>
-              <h3 md-subheader class="text-upper tc-blue-grey-100">Movies</h3>
-              <md-list-item>
-                <p md-line class="tc-blue-grey-300">Popular</p>
-              </md-list-item>
-              <md-list-item>
-                <p md-line class="tc-blue-grey-300">Top Rated</p>
-              </md-list-item>
-              <md-list-item>
-                <p md-line class="tc-blue-grey-300">Upcoming</p>
-              </md-list-item>
-              <md-list-item>
-                <p md-line class="tc-blue-grey-300">Now Playing</p>
-              </md-list-item>
-            </md-nav-list>
-          </div>
-          <div flex>
-            <md-nav-list>
-              <h3 md-subheader class="text-upper tc-blue-grey-100">Tv shows</h3>
-              <md-list-item>
-                <p md-line class="tc-blue-grey-300">Popular</p>
-              </md-list-item>
-              <md-list-item>
-                <p md-line class="tc-blue-grey-300">Top Rated</p>
-              </md-list-item>
-              <md-list-item>
-                <p md-line class="tc-blue-grey-300">On TV</p>
-              </md-list-item>
-              <md-list-item>
-                <p md-line class="tc-blue-grey-300">Airing Today</p>
-              </md-list-item>
-            </md-nav-list>
-          </div>
-          <div flex>
-            <md-nav-list>
-              <h3 md-subheader class="text-upper tc-blue-grey-100">People</h3>
-              <md-list-item>
-                <p md-line class="tc-blue-grey-300">Popular People</p>
-              </md-list-item>
-            </md-nav-list>
-          </div>
-          <div flex>
-            <md-nav-list>
-              <h3 md-subheader class="text-upper tc-blue-grey-100">About</h3>
-              <md-list-item>
-                <p md-line class="tc-blue-grey-300">The Application</p>
-              </md-list-item>
-              <md-list-item>
-                <p md-line class="tc-blue-grey-300">The Author</p>
-              </md-list-item>
-
-            </md-nav-list>
-          </div>
-          <div flex-gt-xs="10">
-          </div>
-          <div flex layout="column" flex-gt-xs="30">
-            <md-icon class="push-top-md" svgIcon="assets:tmdb" style="height:auto;width:auto;"></md-icon>
-            <p class="md-body-1">&copy; Copyright 2017 Fish Team Developers All rights reserved.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--******************* End footer content *******************-->
-
+    <app-footer></app-footer>
   </td-layout-nav>
 </td-layout>
