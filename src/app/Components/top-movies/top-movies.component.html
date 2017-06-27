@@ -51,13 +51,13 @@
               <!-- ************** Mobile version ************** -->
               <div layout="row" layout-align="center center" flex>
                 <md-card flex class="push-none push-bottom-sm">
-                  <a [routerLink]="['/movie', movie['id]']]">
+                  <a [routerLink]="['/movie', movie.id]">
                     <img md-card-image src="{{apiImg + movie['backdrop_path']}}">
                   </a>
                   <md-card-content>
                     <div flex layout="column">
                       <div layout="row">
-                        <a flex [routerLink]="['/movie', movie['id']]">
+                        <a flex [routerLink]="['/movie', movie.id]">
                           <h3 class="md-title tc-grey-800 push-top-none push-bottom-none">
                             {{movie['original_title']}}</h3>
                         </a>

@@ -50,7 +50,7 @@
               <!-- ************** Mobile version ************** -->
               <div layout="row" layout-align="center center" flex>
                 <md-card flex class="push-none push-bottom-sm">
-                  <a [routerLink]="['/serie', serie['id]']]">
+                  <a [routerLink]="['/serie', serie.id]">
                     <img md-card-image src="{{apiImg + serie['backdrop_path']}}">
                   </a>
                   <md-card-content>
@@ -58,7 +58,7 @@
                       <div layout="row">
                         <a flex [routerLink]="['/serie', serie['id']]">
                           <h3 class="md-title tc-grey-800 push-top-none push-bottom-none">
-                            {{serie['original_title']}}</h3>
+                            {{serie['original_name']}}</h3>
                         </a>
                         <div layout="row" layout-align="end center">
                           <span>{{serie['vote_average']}}</span>
@@ -71,7 +71,7 @@
                         <i flex class="text-micro tc-grey-600">{{getGenre(serie['genre_ids'])}}</i>
                         <div layout="row">
 
-                          <small layout-align="center center" class="tc-grey-800 md-button">{{serie['release_date'] |
+                          <small layout-align="center center" class="tc-grey-800 md-button">{{serie['first_air_date'] |
                             date:'yyyy'}}
                             <md-icon class="fa-md tc-grey-600 default-icon push-left-xs" style="width: auto; height: auto"
                                      fontSet="fa" fontIcon="fa-calendar"></md-icon>

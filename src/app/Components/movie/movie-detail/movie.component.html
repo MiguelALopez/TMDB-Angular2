@@ -110,7 +110,7 @@
         <a md-tab-link (click)="changeTab(route['value'])" *ngFor="let route of routes"
            [active]="currentTab == route['value']" class="pad-left-sm pad-right-sm">
           <span hide-xs>{{route['title']}}</span>
-          <span hide-gt-xs><md-icon>local_movies</md-icon></span>
+          <span hide-gt-xs><md-icon>{{route['icon']}}</md-icon></span>
         </a>
       </nav>
     </md-toolbar>

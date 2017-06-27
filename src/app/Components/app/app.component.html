@@ -30,7 +30,7 @@
         <a md-tab-link [routerLink]="[route['route']]" routerLinkActive #ni="routerLinkActive"
            [active]="ni.isActive" *ngFor="let route of routes">
           <span hide-xs>{{route['title']}}</span>
-          <span hide-gt-xs><md-icon>local_movies</md-icon></span>
+          <span hide-gt-xs><md-icon>{{route['icon']}}</md-icon></span>
         </a>
       </nav>
     </md-toolbar>
