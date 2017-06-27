@@ -61,7 +61,7 @@
           <strong class="tc-grey-700 md-button">{{movie['release_date'] | date:'yyyy'}} - {{movie['release_date'] | date:'MMM'}}</strong>
         </div>
 
-        <div layout="column">
+        <div layout="column" flex>
           <h3 class="md-headline tc-grey-800 push-top-md push-bottom-none">Additional info</h3>
 
           <!-- ***************** Runtime *******************-->
@@ -96,9 +96,9 @@
 
 
           <ng-template #elseBlock>
-          <span class="md-body-1 push-none push-left-sm">
-            No provided
-          </span>
+            <span class="md-body-1 push-none push-left-sm">
+              No provided
+            </span>
           </ng-template>
         </div>
       </div>
@@ -107,8 +107,8 @@
   <div layout="column">
     <md-toolbar class="pad-none" layout-align="center center">
       <nav md-stretch-tabs md-tab-nav-bar class="pull-bottom-xl pull-top-md text-upper" flex>
-        <a md-tab-link (click)="changeTab(route['value'])" routerLinkActive #ni="routerLinkActive"
-           [active]="ni.isActive" *ngFor="let route of routes" class="pad-left-sm pad-right-sm">
+        <a md-tab-link (click)="changeTab(route['value'])" *ngFor="let route of routes"
+           [active]="currentTab == route['value']" class="pad-left-sm pad-right-sm">
           <span hide-xs>{{route['title']}}</span>
           <span hide-gt-xs><md-icon>local_movies</md-icon></span>
         </a>
@@ -117,7 +117,13 @@
   </div>
   <div [ngSwitch]="currentTab">
     <div *ngSwitchCase="'1'">
-
+      <app-movie-images></app-movie-images>
+    </div>
+    <div *ngSwitchCase="'2'">
+      <app-movie-videos></app-movie-videos>
+    </div>
+    <div *ngSwitchCase="'3'">
+      <app-movie-cast></app-movie-cast>
     </div>
   </div>
 

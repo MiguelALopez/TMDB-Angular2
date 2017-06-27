@@ -1,0 +1,48 @@
+<section>
+  <div tdMediaToggle="gt-xs" [mediaClasses]="['pad-xl']">
+    <div class="row">
+      <h1 class="push-bottom-sm text-center"
+          tdMediaToggle="xs" [mediaClasses]="['md-title']">{{title}}</h1>
+      <h3 class="push-left-md">Backdrops</h3>
+      <div *ngFor="let image of backdrops | slice:0:10" class="col-md-4">
+        <md-card>
+          <a href="{{apiImgOrig + image['file_path']}}">
+            <img md-card-image [src]="apiImg + image['file_path']">
+          </a>
+          <md-card-content>
+            <div flex layout="column">
+              <div layout="row">
+                <!--<h3 class="md-subhead tc-grey-800 push-top-none push-bottom-none">-->
+                <!--{{image['name']}}</h3>-->
+              </div>
+              <div layout="row">
+                <i flex class="text-micro tc-grey-600">{{'Size: ' + image['width'] + 'x' + image['height']}}</i>
+              </div>
+            </div>
+          </md-card-content>
+        </md-card>
+      </div>
+    </div>
+    <div class="row">
+      <h3 class="push-left-md">Posters</h3>
+      <div *ngFor="let image of posters | slice:0:10" class="col-md-3">
+        <md-card>
+          <a href="{{apiImgOrig + image['file_path']}}">
+            <img md-card-image [src]="apiImg + image['file_path']">
+          </a>
+          <md-card-content>
+            <div flex layout="column">
+              <div layout="row">
+                <!--<h3 class="md-subhead tc-grey-800 push-top-none push-bottom-none">-->
+                <!--{{image['name']}}</h3>-->
+              </div>
+              <div layout="row">
+                <i flex class="text-micro tc-grey-600">{{'Size: ' + image['width'] + 'x' + image['height']}}</i>
+              </div>
+            </div>
+          </md-card-content>
+        </md-card>
+      </div>
+    </div>
+  </div>
+</section>

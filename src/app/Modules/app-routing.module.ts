@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 // Components
 import {TopMoviesComponent} from '../Components/top-movies/top-movies.component';
-import {MovieComponent} from '../Components/movie/movie.component';
+import {MovieComponent} from '../Components/movie/movie-detail/movie.component';
 import {ListPeopleComponent} from '../Components/list-people/list-people.component';
 import {ListSeriesComponent} from '../Components/list-series/list-series.component';
 import {SerieComponent} from '../Components/serie/serie.component';

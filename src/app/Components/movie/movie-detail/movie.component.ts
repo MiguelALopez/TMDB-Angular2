@@ -1,7 +1,7 @@
 import {Component, NgZone, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
-import {MovieService} from '../../Services/movie.service';
-import {CREDENTIALS} from '../../Static/credentials';
+import {MovieService} from '../../../Services/movie.service';
+import {CREDENTIALS} from '../../../Static/credentials';
 
 // For pagination
 import {TdMediaService} from '@covalent/core';
@@ -29,21 +29,17 @@ export class MovieComponent implements OnInit, OnDestroy {
 
   routes: Object[] = [
     {
-      title: 'Videos',
-      value: '1',
-      icon: 'local_movies',
-    }, {
       title: 'Images',
-      value: '2',
+      value: '1',
       icon: 'image',
+    }, {
+      title: 'Videos',
+      value: '2',
+      icon: 'local_movies',
     }, {
       title: 'Cast',
       value: '3',
       icon: 'person',
-    }, {
-      title: 'Recommendations',
-      value: '4',
-      icon: 'stars',
     },
   ];
 

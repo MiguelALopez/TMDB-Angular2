@@ -17,8 +17,7 @@ export class MovieService {
    * @returns {Observable<R>}: This is an observable with the response
    */
   sendRequest(url: string, args= ''): Observable<any> {
-    url += ('?api_key=' + CREDENTIALS.apiKey +
-    '&language=en-US' + args);
+    url += ('?api_key=' + CREDENTIALS.apiKey  + args);
     return this.http.get(url).map(response => response.json());
   }
 
@@ -41,6 +40,39 @@ export class MovieService {
    */
   getCredits(id: number): Observable<Array<any>> {
     const url = this.url + id + '/credits';
+    return this.sendRequest(url);
+  }
+
+  /**
+   * This function obtain the videos of a specific movie, for more information of the api TMDB
+   * https://developers.themoviedb.org/3/movies/get-movie-videos
+   * @param id: This is the ID of the movie
+   * @returns {Observable<any>}: Results with the credits of a specific movie
+   */
+  getVideos(id: number): Observable<Array<any>> {
+    const url = this.url + id + '/videos';
+    return this.sendRequest(url);
+  }
+
+  /**
+   * This function obtain the images of a specific movie, for more information of the api TMDB
+   * https://developers.themoviedb.org/3/movies/get-movie-images
+   * @param id: This is the ID of the movie
+   * @returns {Observable<any>}: Results with the credits of a specific movie
+   */
+  getImages(id: number): Observable<Array<any>> {
+    const url = this.url + id + '/images';
+    return this.sendRequest(url);
+  }
+
+  /**
+   * This function obtain the recommendations of a specific movie, for more information of the api TMDB
+   * https://developers.themoviedb.org/3/movies/get-movie-recommendations
+   * @param id: This is the ID of the movie
+   * @returns {Observable<any>}: Results with the credits of a specific movie
+   */
+  getRecommendations(id: number): Observable<Array<any>> {
+    const url = this.url + id + '/recommendations';
     return this.sendRequest(url);
   }
 }

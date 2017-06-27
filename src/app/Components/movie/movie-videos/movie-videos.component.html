@@ -1,0 +1,24 @@
+<section>
+  <div tdMediaToggle="gt-xs" [mediaClasses]="['pad-xl']">
+    <div class="row">
+      <h1 class="push-bottom-sm text-center"
+          tdMediaToggle="xs" [mediaClasses]="['md-title']">Videos</h1>
+      <div *ngFor="let video of videos" class="col-md-4">
+        <md-card>
+          <iframe md-card-image [src]="getUrl(video.key)" height="315" frameborder="0" allowfullscreen></iframe>
+          <md-card-content>
+            <div flex layout="column">
+              <div layout="row">
+                  <h3 class="md-subhead tc-grey-800 push-top-none push-bottom-none">
+                    {{video['name']}}</h3>
+              </div>
+              <div layout="row">
+                <i flex class="text-micro tc-grey-600">Size :{{video['size']}}</i>
+              </div>
+            </div>
+          </md-card-content>
+        </md-card>
+      </div>
+    </div>
+  </div>
+</section>
