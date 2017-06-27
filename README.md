@@ -23,8 +23,13 @@ This is the final project for angular course, this project is an implementation 
 - **Search Component**
 - **TopMovies Component**
 
-### Extra
+### Features
+- **Full Responsive design**
 - **Angular version:** 4.0.0
+- **Covalent version:** 1.0.0-beta.5-1
+- **Angular-Material version:** 2.0.0-beta.6
+- **Bootstrap version:** 3.3.7
+- **Font-Awesome version:** 4.7.0
 - **Deploy:**  [https://miguelalopez.github.io/TMDB-Angular2/movies](https://miguelalopez.github.io/TMDB-Angular2/movies)
 
 ## External modules
@@ -35,26 +40,26 @@ which is based on Angular-Material
 
 #### List of modules used
 
-- CovalentLayoutModule
-- CovalentMenuModule
-- CovalentSearchModule
-- CovalentHttpModule
-- CovalentMediaModule
-- CovalentPagingModule
-- CovalentLoadingModule
+- **CovalentLayoutModule**
+- **CovalentMenuModule**
+- **CovalentSearchModule**
+- **CovalentHttpModule**
+- **CovalentMediaModule**
+- **CovalentPagingModule**
+- **CovalentLoadingModule**
 
 ### Angular Material
 The [Angular-Material](https://github.com/angular/material) version used was version 2.0.0-beta.6
 
 #### List of modules used
 
-- MdListModule
-- MdIconModule
-- MdMenuModule
-- MdTabsModule
-- MdToolbarModule
-- MdCardModule
-- MdInputModule
+- **MdListModule**
+- **MdIconModule**
+- **MdMenuModule**
+- **MdTabsModule**
+- **MdToolbarModule**
+- **MdCardModule**
+- **MdInputModule**
 
 ### Angular-cli
 
