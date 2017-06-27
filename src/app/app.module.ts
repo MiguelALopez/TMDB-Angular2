@@ -14,6 +14,7 @@ import {TopMoviesComponent} from './Components/top-movies/top-movies.component';
 import {MovieComponent} from './Components/movie/movie.component';
 import {ListPeopleComponent} from './Components/list-people/list-people.component';
 import {SearchComponent} from './Components/search/search.component';
+import {ListSeriesComponent} from './Components/list-series/list-series.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {SearchComponent} from './Components/search/search.component';
     TopMoviesComponent,
     MovieComponent,
     ListPeopleComponent,
-    SearchComponent
+    SearchComponent,
+    ListSeriesComponent
   ],
   imports: [
     BrowserModule,

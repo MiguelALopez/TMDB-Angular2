@@ -15,7 +15,7 @@ export class PeopleService {
    * In charge to send a petition to the api TMDB from with the correspondent URL
    * @param url: This is the route to obtain the resource
    * @param args: This is the additional arguments to the query, default value empty
-   * @returns {Observable<R>}
+   * @returns {Observable<R>}: This is an observable with the response
    */
   sendRequest(url: string, args = ''): Observable<any> {
     url += ('?api_key=' + CREDENTIALS.apiKey +
@@ -39,6 +39,7 @@ export class PeopleService {
    * This function obtain a list of the most newly created person,
    * for more information of the api TMDB
    * https://developers.themoviedb.org/3/people/get-latest-person
+   * @param page:This specified the number of the page for the search
    * @returns {Observable<any>}: Results with the list of the latest people
    */
   getLatest(page: number): Observable<Array<any>> {
@@ -51,6 +52,7 @@ export class PeopleService {
    * This function obtain a list of popular people,
    * for more information of the api TMDB
    * https://developers.themoviedb.org/3/people/get-popular-people
+   * @param page: This specified the number of the page for the search
    * @returns {Observable<any>}: Results with the list ot the most popular people
    */
   getPopular(page: number): Observable<Array<any>> {

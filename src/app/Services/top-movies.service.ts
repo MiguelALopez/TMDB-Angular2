@@ -29,7 +29,7 @@ export class TopMoviesService {
   /**
    *
    * https://developers.themoviedb.org/3/movies/get-now-playing
-   * @param page
+   * @param page: This specified the number of the page for the search
    * @returns {Observable<any>}
    */
   getPlayingMovies(page: number): Observable<Array<any>> {
@@ -41,7 +41,7 @@ export class TopMoviesService {
   /**
    *
    * https://developers.themoviedb.org/3/movies/get-popular-movies
-   * @param page
+   * @param page: This specified the number of the page for the search
    * @returns {Observable<any>}
    */
   getPopularMovies(page: number): Observable<Array<any>> {
@@ -53,7 +53,7 @@ export class TopMoviesService {
   /**
    *
    * https://developers.themoviedb.org/3/movies/get-top-rated-movies
-   * @param page
+   * @param page: This specified the number of the page for the search
    * @returns {Observable<any>}
    */
   getRatedMovies(page: number): Observable<Array<any>> {
@@ -65,7 +65,7 @@ export class TopMoviesService {
   /**
    *
    * https://developers.themoviedb.org/3/movies/get-upcoming
-   * @param page
+   * @param page: This specified the number of the page for the search
    * @returns {Observable<any>}
    */
   getRatedUpcoming(page: number): Observable<Array<any>> {

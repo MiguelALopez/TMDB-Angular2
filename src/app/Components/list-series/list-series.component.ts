@@ -1,20 +1,21 @@
-import {Component, NgZone, OnDestroy, OnInit} from '@angular/core';
-import {TopMoviesService} from '../../Services/top-movies.service';
+import {Component, NgZone, OnDestroy, OnInit} from "@angular/core";
+import {ListSeriesService} from '../../Services/list-series.service';
 import {CREDENTIALS} from '../../Static/credentials';
-import {MOVIE_GENRES} from '../../Static/genres';
+import {SERIE_GENRES} from '../../Static/genres';
 import {IPageChangeEvent} from '@covalent/core';
 
 import {TdMediaService} from '@covalent/core';
 import {Subscription} from 'rxjs/Subscription';
 
 @Component({
-  selector: 'app-top-movies',
-  templateUrl: './top-movies.component.html',
-  styleUrls: ['./top-movies.component.css'],
-  providers: [TopMoviesService]
+  selector: 'app-list-series',
+  templateUrl: './list-series.component.html',
+  providers: [ListSeriesService]
 })
 
-export class TopMoviesComponent implements OnInit, OnDestroy {
+export class ListSeriesComponent implements OnInit, OnDestroy {
+  title = 'Most popular series';
+
   // Used for responsive services
   isDesktop: boolean = false;
   querySize = 'gt-xs';
@@ -30,23 +31,17 @@ export class TopMoviesComponent implements OnInit, OnDestroy {
   total_pages: number;
   total_results: number;
   response = [];
-  movies = [];
+  series = [];
   apiImg = CREDENTIALS.apiImg + 'w500';
 
-  constructor(private topMoviesService: TopMoviesService,
+  constructor(private listSeriesService: ListSeriesService,
               private _mediaService: TdMediaService,
               private _ngZone: NgZone) {
   }
 
+
   ngOnInit(): void {
-    this.topMoviesService.getPopularMovies(1).subscribe(movies => {
-      this.response = movies;
-      this.movies = movies['results'];
-      this.page = movies['page'];
-      this.total_pages = movies['total_pages'];
-      this.total_results = movies['total_results'];
-      console.log(this.movies);
-    });
+    this.updateSearch(1);
 
     this.checkScreen();
     this.watchScreen();
@@ -54,6 +49,17 @@ export class TopMoviesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this._querySubscription.unsubscribe();
+  }
+
+  updateSearch(page: number): void {
+    this.listSeriesService.getPopularSerie(page).subscribe(serie => {
+      this.response = serie;
+      this.series = serie['results'];
+      this.page = serie['page'];
+      this.total_pages = serie['total_pages'];
+      this.total_results = serie['total_results'];
+      console.log(this.series);
+    });
   }
 
   /**
@@ -96,9 +102,9 @@ export class TopMoviesComponent implements OnInit, OnDestroy {
     if (genresId){
       for (const id of genresId) {
         if (id === genresId[genresId.length - 1]) {
-          genres += MOVIE_GENRES[id];
+          genres += SERIE_GENRES[id];
         } else {
-          genres += MOVIE_GENRES[id] + ', ';
+          genres += SERIE_GENRES[id] + ', ';
         }
       }
     }
@@ -111,12 +117,6 @@ export class TopMoviesComponent implements OnInit, OnDestroy {
    */
   change(event: IPageChangeEvent): void {
     this.event = event;
-    this.topMoviesService.getPopularMovies(event.page).subscribe(movies => {
-      this.response = movies;
-      this.movies = movies['results'];
-      this.page = movies['page'];
-      this.total_pages = movies['total_pages'];
-      this.total_results = movies['total_results'];
-    });
+    this.updateSearch(event.page);
   }
 }

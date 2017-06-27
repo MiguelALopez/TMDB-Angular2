@@ -5,10 +5,26 @@
   </td-search-box>
   <div *ngIf="(complete | async)?.length > 0">
     <ul class="results">
-      <li *ngFor="let result of results | slice:0:5" [ngSwitch]="result['media_type']" class="search-result" >
-        <a *ngSwitchCase="'movie'" [routerLink]="['/movie', result['id']]">{{result['original_title']}}</a>
-        <a *ngSwitchCase="'tv'">{{result['original_name']}}</a>
-        <a *ngSwitchCase="'person'">{{result['name']}}</a>
+      <li *ngFor="let result of results | slice:0:5" [ngSwitch]="result['media_type']" class="search-result">
+        <a *ngSwitchCase="'movie'" [routerLink]="['/movie', result['id']]" layout="row" layout-align="center center">
+          <md-icon>local_movies</md-icon>
+          <span>
+            {{result['original_title']}}
+          </span>
+        </a>
+        <a *ngSwitchCase="'tv'" layout="row" layout-align="center center">
+          <md-icon>tv</md-icon>
+          <span>
+            {{result['original_name']}}
+
+          </span>
+        </a>
+        <a *ngSwitchCase="'person'" [routerLink]="['/person', result['id']]" layout="row" layout-align="center center">
+          <md-icon>person</md-icon>
+          <span>
+            {{result['name']}}
+          </span>
+        </a>
       </li>
     </ul>
   </div>
