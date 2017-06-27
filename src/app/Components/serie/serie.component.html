@@ -48,7 +48,7 @@
 
     <!-- *************** Additional info section ***************-->
     <div flex-gt-xs flex-gt-md="20" layout="column" class="pad-lg info" layout-align="center center">
-      <div layout="column" layout-align="center center">
+      <div *ngIf="serie['first_air_date']" layout="column" layout-align="center center">
         <div>
           <md-icon class="fa-4x tc-grey-800 default-icon"
                    fontSet="fa" fontIcon="fa-calendar-o"></md-icon>
@@ -65,7 +65,7 @@
 
         <!-- ***************** Runtime *******************-->
         <strong class="tc-grey-900 push-none push-left-sm push-top-sm">Runtime</strong>
-        <span *ngIf="serie['episode_run_time']; else elseBlock"
+        <span *ngIf="serie['episode_run_time'] && serie['episode_run_time'].length > 0; else elseBlock"
               class="md-body-1 push-none push-left-sm">{{convertTime(serie['episode_run_time'])}}</span>
 
         <!-- ***************** Budget *******************-->
@@ -75,7 +75,7 @@
 
         <!-- ***************** Network *******************-->
         <strong class="tc-grey-900 push-none push-left-sm push-top-sm">Network</strong>
-        <div *ngIf="serie['networks']; else elseBlock"
+        <div *ngIf="serie['networks'] && serie['networks'].length > 0; else elseBlock"
               class="md-body-1 push-none push-left-sm">
           <span *ngFor="let network of serie['networks']">- {{network['name']}}<br></span>
           <!--<ul>-->

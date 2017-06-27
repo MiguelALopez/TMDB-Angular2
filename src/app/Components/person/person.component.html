@@ -1,0 +1,83 @@
+<section>
+  <div layout-gt-md="row" layout-xs="column">
+    <!-- *************** Image section *************** -->
+    <div *ngIf="isDesktop; then desktop else movile;"></div>
+    <ng-template #desktop>
+      <div class="push-lg push-right-none" flex-gt-md="30">
+        <img *ngIf="person['profile_path'] && isDesktop"   src="{{apiImg + person['profile_path']}}" class="img-responsive img-rounded img-poster">
+      </div>
+    </ng-template>
+    <ng-template #movile>
+      <div class="pad-none" flex layout="row" layout-align="center center">
+        <img *ngIf="person['backdrop_path'] && !isDesktop" flex src="{{apiImg + person['backdrop_path']}}" class="img-responsive ">
+      </div>
+    </ng-template>
+
+    <!-- *************** Middle section ***************-->
+    <div flex-gt-md="50" layout class="push-lg"
+         tdMediaToggle="xs" [mediaClasses]="['push-top-sm', 'push-left-sm']">
+      <div flex class="push-right-sm">
+        <div layout="column">
+          <h1 class="push-bottom-none"
+              tdMediaToggle="xs" [mediaClasses]="['md-title']">
+            {{person['name']}}
+          </h1>
+          <i class="text-micro tc-grey-600">{{getMovie(person['also_known_as'])}}</i>
+        </div>
+        <div class="push-top-sm">
+          <div layout="row" layout-align="start center">
+            <span class="md-body-1 push-right-xs">{{getPopularity(person['popularity'])}}</span>
+            <md-icon>thumb_up</md-icon>
+          </div>
+        </div>
+        <h3 class="md-headline tc-grey-800 push-top-md push-bottom-sm">Biography</h3>
+        <span *ngIf="person['biography']; else elseBlock">{{person['biography']}}</span>
+
+      </div>
+    </div>
+
+    <!-- *************** Additional info section ***************-->
+    <div flex-gt-xs flex-gt-md="20" layout="column" class="pad-lg info" layout-align="center center">
+      <div layout="column" layout-align="center center">
+        <h3 class="md-headline tc-grey-800 push-top-md push-bottom-none">Birthday</h3>
+        <div>
+          <md-icon class="fa-4x tc-grey-800 default-icon"
+                   fontSet="fa" fontIcon="fa-calendar-o"></md-icon>
+          <div layout="row" layout-align="center center"class="date-calendar" >
+            <md-icon class="fa-lg default-icon" fontSet="fa">
+              {{person['birthday'] | date:'d'}}</md-icon>
+          </div>
+        </div>
+        <strong class="tc-grey-700 md-button">{{person['birthday'] | date:'yyyy'}} - {{person['birthday'] | date:'MMM'}}</strong>
+      </div>
+
+      <div layout="column" flex>
+        <h4 class="md-headline tc-grey-800 push-top-md push-bottom-none">Personal info</h4>
+
+        <!-- ***************** Runtime *******************-->
+        <strong class="tc-grey-900 push-none push-left-sm push-top-sm">Gender</strong>
+        <span *ngIf="person['gender']; else elseBlock"
+              class="md-body-1 push-none push-left-sm">{{person['gender'] == 2 ? 'Male': 'Woman'}}</span>
+
+        <!-- ***************** Budget *******************-->
+        <strong class="tc-grey-900 push-none push-left-sm push-top-sm">Place of bird</strong>
+        <span *ngIf="person['place_of_birth']; else elseBlock"
+              class="md-body-1 push-none push-left-sm">{{person['place_of_birth']}}</span>
+
+        <!-- ***************** Homepage *******************-->
+        <strong class=" tc-grey-900 push-none push-left-sm push-top-sm">Official Site</strong>
+        <a *ngIf="person['homepage']; else elseBlock"
+           class="md-body-1 push-none push-left-sm" href="{{person['homepage']}}">{{person['homepage']}}</a>
+
+
+        <ng-template #elseBlock>
+          <span class="md-body-1 push-none push-left-sm">
+            No provided
+          </span>
+        </ng-template>
+      </div>
+
+
+    </div>
+  </div>
+</section>

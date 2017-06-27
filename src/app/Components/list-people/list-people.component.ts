@@ -2,7 +2,7 @@ import {Component, NgZone, OnDestroy, OnInit} from '@angular/core';
 import {IPageChangeEvent} from '@covalent/core';
 
 // Services
-import {PeopleService} from '../../Services/people.service';
+import {PeopleService} from '../../Services/list-people.service';
 
 // For pagination
 import {TdMediaService} from '@covalent/core';

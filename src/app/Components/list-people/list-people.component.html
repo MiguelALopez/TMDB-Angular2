@@ -5,7 +5,7 @@
       <div *ngFor="let array of matrixPeople" class="row">
         <div *ngFor="let person of array" class="col-md-3 col-xs-6 pad-none">
           <md-card>
-            <a [routerLink]="['/person', person['id]']]">
+            <a [routerLink]="['/person', person['id']]">
               <img md-card-image src="{{apiImg + person['profile_path']}}">
             </a>
             <md-card-content>

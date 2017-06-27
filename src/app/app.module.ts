@@ -17,6 +17,7 @@ import {ListPeopleComponent} from './Components/list-people/list-people.componen
 import {SearchComponent} from './Components/search/search.component';
 import {ListSeriesComponent} from './Components/list-series/list-series.component';
 import {SerieComponent} from './Components/serie/serie.component';
+import {PersonComponent} from './Components/person/person.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {SerieComponent} from './Components/serie/serie.component';
     ListPeopleComponent,
     SearchComponent,
     ListSeriesComponent,
-    SerieComponent
+    SerieComponent,
+    PersonComponent
   ],
   imports: [
     BrowserModule,

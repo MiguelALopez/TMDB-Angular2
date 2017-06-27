@@ -1,5 +1,5 @@
 import {Component, NgZone, OnDestroy, OnInit} from '@angular/core';
-import {TopMoviesService} from '../../Services/top-movies.service';
+import {TopMoviesService} from '../../Services/list-movies.service';
 import {CREDENTIALS} from '../../Static/credentials';
 import {GENRES} from '../../Static/genres';
 import {IPageChangeEvent} from '@covalent/core';
