@@ -12,7 +12,7 @@
             <div layout="row" layout-align-xs="center center">
               <div flex="30" layout-align="center start" class="pad-lg" tdMediaToggle="sm"
                    [mediaClasses]="['pad-sm']">
-                <a [routerLink]="['/movie', serie['id']]">
+                <a [routerLink]="['/serie', serie['id']]">
                   <img src="{{apiImg + serie['poster_path']}}" class="img-responsive img-rounded img-poster">
                 </a>
               </div>
@@ -21,7 +21,7 @@
                 <div layout="row" tdMediaToggle="gt-sm" [mediaClasses]="['pad-bottom-sm']">
                   <div flex layout="column">
                     <div layout="row">
-                      <a [routerLink]="['/movie', serie['id']]">
+                      <a [routerLink]="['/serie', serie['id']]">
                         <h3 class="md-headline tc-grey-800 push-top-none push-bottom-none">
                           {{serie['original_name']}}</h3>
                       </a>
@@ -50,13 +50,13 @@
             <!-- ************** Mobile version ************** -->
             <div layout="row" layout-align="center center" flex>
               <md-card flex class="push-none push-bottom-sm">
-                <a [routerLink]="['/movie', serie['id]']]">
+                <a [routerLink]="['/serie', serie['id]']]">
                   <img md-card-image src="{{apiImg + serie['backdrop_path']}}">
                 </a>
                 <md-card-content>
                   <div flex layout="column">
                     <div layout="row">
-                      <a flex [routerLink]="['/movie', serie['id']]">
+                      <a flex [routerLink]="['/serie', serie['id']]">
                         <h3 class="md-title tc-grey-800 push-top-none push-bottom-none">
                           {{serie['original_title']}}</h3>
                       </a>

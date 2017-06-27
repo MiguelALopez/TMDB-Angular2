@@ -1,7 +1,7 @@
 import {Component, NgZone, OnDestroy, OnInit} from '@angular/core';
 import {TopMoviesService} from '../../Services/top-movies.service';
 import {CREDENTIALS} from '../../Static/credentials';
-import {MOVIE_GENRES} from '../../Static/genres';
+import {GENRES} from '../../Static/genres';
 import {IPageChangeEvent} from '@covalent/core';
 
 import {TdMediaService} from '@covalent/core';
@@ -96,9 +96,9 @@ export class TopMoviesComponent implements OnInit, OnDestroy {
     if (genresId){
       for (const id of genresId) {
         if (id === genresId[genresId.length - 1]) {
-          genres += MOVIE_GENRES[id];
+          genres += GENRES[id];
         } else {
-          genres += MOVIE_GENRES[id] + ', ';
+          genres += GENRES[id] + ', ';
         }
       }
     }

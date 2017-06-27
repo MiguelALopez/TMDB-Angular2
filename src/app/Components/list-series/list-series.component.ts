@@ -1,7 +1,7 @@
 import {Component, NgZone, OnDestroy, OnInit} from "@angular/core";
 import {ListSeriesService} from '../../Services/list-series.service';
 import {CREDENTIALS} from '../../Static/credentials';
-import {SERIE_GENRES} from '../../Static/genres';
+import {GENRES} from '../../Static/genres';
 import {IPageChangeEvent} from '@covalent/core';
 
 import {TdMediaService} from '@covalent/core';
@@ -102,9 +102,9 @@ export class ListSeriesComponent implements OnInit, OnDestroy {
     if (genresId){
       for (const id of genresId) {
         if (id === genresId[genresId.length - 1]) {
-          genres += SERIE_GENRES[id];
+          genres += GENRES[id];
         } else {
-          genres += SERIE_GENRES[id] + ', ';
+          genres += GENRES[id] + ', ';
         }
       }
     }

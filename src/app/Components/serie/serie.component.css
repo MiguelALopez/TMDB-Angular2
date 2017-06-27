@@ -1,0 +1,20 @@
+.date-calendar {
+  float: right;
+  margin-right: 0;
+  margin-top: -36px;
+  position: absolute;
+  z-index: 2;
+  width: 52px;
+  height: 32px;
+}
+
+.default-icon {
+  position: relative;
+  width: auto;
+  height: auto;
+}
+
+.info{
+  /*background-color: #EEE;*/
+  box-shadow: 2px 2px 8px #455a64;
+}
