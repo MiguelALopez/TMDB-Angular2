@@ -4,8 +4,12 @@ import {CREDENTIALS} from '../../Static/credentials';
 import {GENRES} from '../../Static/genres';
 import {IPageChangeEvent} from '@covalent/core';
 
+// For pagination
 import {TdMediaService} from '@covalent/core';
 import {Subscription} from 'rxjs/Subscription';
+
+// Load service
+import {TdLoadingService} from '@covalent/core';
 
 @Component({
   selector: 'app-top-movies',
@@ -22,7 +26,7 @@ export class TopMoviesComponent implements OnInit, OnDestroy {
 
   // Used for the pagination
   event: IPageChangeEvent;
-  firstLast = true;
+  firstLast = false;
   pageSizeAll = false;
   pageLinkCount = 5;
 
@@ -35,21 +39,28 @@ export class TopMoviesComponent implements OnInit, OnDestroy {
 
   constructor(private topMoviesService: TopMoviesService,
               private _mediaService: TdMediaService,
-              private _ngZone: NgZone) {
+              private _ngZone: NgZone,
+              private _loadingService: TdLoadingService) {
   }
 
   ngOnInit(): void {
-    this.topMoviesService.getPopularMovies(1).subscribe(movies => {
+    this.registerLoading();
+
+    this.updateMovies(1);
+
+    this.checkScreen();
+    this.watchScreen();
+  }
+
+  updateMovies(page: number): void {
+    this.topMoviesService.getPopularMovies(page).subscribe(movies => {
       this.response = movies;
       this.movies = movies['results'];
       this.page = movies['page'];
       this.total_pages = movies['total_pages'];
       this.total_results = movies['total_results'];
-      console.log(this.movies);
+      this.resolveLoading();
     });
-
-    this.checkScreen();
-    this.watchScreen();
   }
 
   ngOnDestroy(): void {
@@ -111,12 +122,20 @@ export class TopMoviesComponent implements OnInit, OnDestroy {
    */
   change(event: IPageChangeEvent): void {
     this.event = event;
-    this.topMoviesService.getPopularMovies(event.page).subscribe(movies => {
-      this.response = movies;
-      this.movies = movies['results'];
-      this.page = movies['page'];
-      this.total_pages = movies['total_pages'];
-      this.total_results = movies['total_results'];
-    });
+    this.registerLoading();
+    this.updateMovies(event.page);
+  }
+
+  // Methods for the loading
+  registerLoading(): void {
+    this._loadingService.register('movies');
+  }
+
+  resolveLoading(): void {
+    this._loadingService.resolve('movies');
+  }
+
+  changeValue(value: number): void { // Usage only enabled on [LoadingMode.Determinate] mode.
+    this._loadingService.setValue('movies', value);
   }
 }

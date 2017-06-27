@@ -22,10 +22,6 @@ export class AppComponent {
       route: 'movies',
       icon: 'local_movies',
     }, {
-      title: 'Genres',
-      route: 'genres',
-      icon: 'view_carousel',
-    }, {
       title: 'People',
       route: 'people',
       icon: 'person',

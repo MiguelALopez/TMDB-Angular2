@@ -39,7 +39,7 @@ export class ListPeopleComponent implements OnInit, OnDestroy {
 
   // Used for the pagination
   event: IPageChangeEvent;
-  firstLast = true;
+  firstLast = false;
   pageSizeAll = false;
   pageLinkCount = 5;
 

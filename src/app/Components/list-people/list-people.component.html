@@ -1,7 +1,9 @@
-<section class="container push-top-md" *tdLoading="'people'; mode:'indeterminate'; type:'circle'; strategy:'overlay'; color:'primary'">
+<section class="container push-top-md"
+         >
   <div layout="column" tdMediaToggle="gt-xs" [mediaClasses]="['pad-xl']">
-    <h1 class="md-display-1 tc-grey-800 ">Most popular people</h1>
-    <!--<div class="row">-->
+    <div *tdLoading="'people'; mode:'indeterminate'; type:'circle'; strategy:'replace'; color:'primary'">
+      <h1 class="md-display-1 tc-grey-800 ">Most popular people</h1>
+      <!--<div class="row">-->
       <div *ngFor="let array of matrixPeople" class="row">
         <div *ngFor="let person of array" class="col-md-3 col-xs-6 pad-none">
           <md-card>
@@ -16,9 +18,9 @@
                       {{person['name']}}</h3>
                   </a>
                   <!--<div layout="row" layout-align="end center">-->
-                    <!--<span>{{person['vote_average']}}</span>-->
-                    <!--<md-icon class="fa-md tc-grey-800 default-icon" style="width: auto; height: auto"-->
-                             <!--fontSet="fa" fontIcon="fa-star"></md-icon>-->
+                  <!--<span>{{person['vote_average']}}</span>-->
+                  <!--<md-icon class="fa-md tc-grey-800 default-icon" style="width: auto; height: auto"-->
+                  <!--fontSet="fa" fontIcon="fa-star"></md-icon>-->
                   <!--</div>-->
                 </div>
                 <div layout="row">
@@ -30,6 +32,7 @@
         </div>
 
       </div>
+    </div>
     <!--</div>-->
     <td-paging-bar class="push-top-sm" #pagingBar pageSizeAllText="All" [pageSizeAll]="pageSizeAll" [pageSizes]="[20]"
                    pageLinkCount="{{pageLinkCount}}"

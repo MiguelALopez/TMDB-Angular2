@@ -1,100 +1,103 @@
 <section>
   <div layout-gt-xs="row">
     <div flex class="" tdMediaToggle="gt-xs" [mediaClasses]="['pad-xl']">
-      <div tdMediaToggle="gt-sm" [mediaClasses]="['push-lg']">
-        <h1 class="md-display-1 tc-grey-800 ">Top movies</h1>
+      <div flex *tdLoading="'movies'; mode:'indeterminate'; type:'circle'; strategy:'replace'; color:'primary'">
+        <div tdMediaToggle="gt-sm" [mediaClasses]="['push-lg']">
+          <h1 class="md-display-1 tc-grey-800 ">Top movies</h1>
 
-        <div layout="column" *ngFor="let movie of movies">
-          <div *ngIf="isDesktop; then desktop else mobile"></div>
-          <ng-template #desktop>
-            <!-- ************** Desktop version ************** -->
+          <div layout="column" *ngFor="let movie of movies">
+            <div *ngIf="isDesktop; then desktop else mobile"></div>
+            <ng-template #desktop>
+              <!-- ************** Desktop version ************** -->
 
-            <div layout="row" layout-align-xs="center center">
-              <div flex="30" layout-align="center start" class="pad-lg" tdMediaToggle="sm"
-                   [mediaClasses]="['pad-sm']">
-                <a [routerLink]="['/movie', movie.id]">
-                  <img src="{{apiImg + movie['poster_path']}}" class="img-responsive img-rounded img-poster">
-                </a>
-              </div>
-              <div layout="column" flex="70" tdMediaToggle="{{querySize}}"
-                   [mediaClasses]="['pad-top-lg', 'pad-bottom-lg']">
-                <div layout="row" tdMediaToggle="gt-sm" [mediaClasses]="['pad-bottom-sm']">
-                  <div flex layout="column">
-                    <div layout="row">
-                      <a [routerLink]="['/movie', movie.id]">
-                        <h3 class="md-headline tc-grey-800 push-top-none push-bottom-none">
-                          {{movie['original_title']}}</h3>
-                      </a>
-                      <div flex layout="row" layout-align="end center">
-                        <span>{{movie['vote_average']}}</span>
-                        <md-icon class="tc-grey-800">star</md-icon>
-                      </div>
-                    </div>
-
-                    <div layout="row">
-                      <div flex layout="row">
-                        <md-icon class="md-24 fa-md tc-grey-800" fontSet="fa" fontIcon="fa-calendar"></md-icon>
-                        <small layout-align="center center" class="tc-grey-800 md-button">{{movie['release_date']}}
-                        </small>
-                      </div>
-                      <i class="text-micro tc-grey-600">{{getGenre(movie['genre_ids'])}}</i>
-                    </div>
-                  </div>
+              <div layout="row" layout-align-xs="center center">
+                <div flex="30" layout-align="center start" class="pad-lg" tdMediaToggle="sm"
+                     [mediaClasses]="['pad-sm']">
+                  <a [routerLink]="['/movie', movie.id]">
+                    <img src="{{apiImg + movie['poster_path']}}" class="img-responsive img-rounded img-poster">
+                  </a>
                 </div>
-                <span>{{movie['overview']}}</span>
-              </div>
-            </div>
-            <md-divider></md-divider>
-          </ng-template>
-          <ng-template #mobile>
-            <!-- ************** Mobile version ************** -->
-            <div layout="row" layout-align="center center" flex>
-              <md-card flex class="push-none push-bottom-sm">
-                <a [routerLink]="['/movie', movie['id]']]">
-                  <img md-card-image src="{{apiImg + movie['backdrop_path']}}">
-                </a>
-                <md-card-content>
-                  <div flex layout="column">
-                    <div layout="row">
-                      <a flex [routerLink]="['/movie', movie['id']]">
-                        <h3 class="md-title tc-grey-800 push-top-none push-bottom-none">
-                          {{movie['original_title']}}</h3>
-                      </a>
-                      <div layout="row" layout-align="end center">
-                        <span>{{movie['vote_average']}}</span>
-                        <md-icon class="fa-md tc-grey-800 default-icon" style="width: auto; height: auto"
-                                 fontSet="fa" fontIcon="fa-star"></md-icon>
-                      </div>
-                    </div>
-
-                    <div layout="row">
-                      <i flex class="text-micro tc-grey-600">{{getGenre(movie['genre_ids'])}}</i>
+                <div layout="column" flex="70" tdMediaToggle="{{querySize}}"
+                     [mediaClasses]="['pad-top-lg', 'pad-bottom-lg']">
+                  <div layout="row" tdMediaToggle="gt-sm" [mediaClasses]="['pad-bottom-sm']">
+                    <div flex layout="column">
                       <div layout="row">
+                        <a [routerLink]="['/movie', movie.id]">
+                          <h3 class="md-headline tc-grey-800 push-top-none push-bottom-none">
+                            {{movie['original_title']}}</h3>
+                        </a>
+                        <div flex layout="row" layout-align="end center">
+                          <span>{{movie['vote_average']}}</span>
+                          <md-icon class="tc-grey-800">star</md-icon>
+                        </div>
+                      </div>
 
-                        <small layout-align="center center" class="tc-grey-800 md-button">{{movie['release_date'] |
-                          date:'yyyy'}}
-                          <md-icon class="fa-md tc-grey-600 default-icon push-left-xs" style="width: auto; height: auto"
-                                   fontSet="fa" fontIcon="fa-calendar"></md-icon>
-                        </small>
+                      <div layout="row">
+                        <div flex layout="row">
+                          <md-icon class="md-24 fa-md tc-grey-800" fontSet="fa" fontIcon="fa-calendar"></md-icon>
+                          <small layout-align="center center" class="tc-grey-800 md-button">{{movie['release_date']}}
+                          </small>
+                        </div>
+                        <i class="text-micro tc-grey-600">{{getGenre(movie['genre_ids'])}}</i>
                       </div>
                     </div>
                   </div>
-                </md-card-content>
-              </md-card>
-            </div>
-          </ng-template>
+                  <span>{{movie['overview']}}</span>
+                </div>
+              </div>
+              <md-divider></md-divider>
+            </ng-template>
+            <ng-template #mobile>
+              <!-- ************** Mobile version ************** -->
+              <div layout="row" layout-align="center center" flex>
+                <md-card flex class="push-none push-bottom-sm">
+                  <a [routerLink]="['/movie', movie['id]']]">
+                    <img md-card-image src="{{apiImg + movie['backdrop_path']}}">
+                  </a>
+                  <md-card-content>
+                    <div flex layout="column">
+                      <div layout="row">
+                        <a flex [routerLink]="['/movie', movie['id']]">
+                          <h3 class="md-title tc-grey-800 push-top-none push-bottom-none">
+                            {{movie['original_title']}}</h3>
+                        </a>
+                        <div layout="row" layout-align="end center">
+                          <span>{{movie['vote_average']}}</span>
+                          <md-icon class="fa-md tc-grey-800 default-icon" style="width: auto; height: auto"
+                                   fontSet="fa" fontIcon="fa-star"></md-icon>
+                        </div>
+                      </div>
 
-          <!--</div>-->
-        </div>
-        <td-paging-bar #pagingBar pageSizeAllText="All" [pageSizeAll]="pageSizeAll" [pageSizes]="[10]"
-                       pageLinkCount="{{pageLinkCount}}"
-                       [initialPage]="1" [firstLast]="firstLast" [total]="10000" (change)="change($event)">
-          <div *ngIf="isDesktop">
-            <span td-paging-bar-label hide-xs>Row per page:</span>
-            {{pagingBar.range}} <span hide-xs>of {{pagingBar.total}}</span>
+                      <div layout="row">
+                        <i flex class="text-micro tc-grey-600">{{getGenre(movie['genre_ids'])}}</i>
+                        <div layout="row">
+
+                          <small layout-align="center center" class="tc-grey-800 md-button">{{movie['release_date'] |
+                            date:'yyyy'}}
+                            <md-icon class="fa-md tc-grey-600 default-icon push-left-xs"
+                                     style="width: auto; height: auto"
+                                     fontSet="fa" fontIcon="fa-calendar"></md-icon>
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                  </md-card-content>
+                </md-card>
+              </div>
+            </ng-template>
+
+            <!--</div>-->
           </div>
-        </td-paging-bar>
+        </div>
       </div>
+      <td-paging-bar #pagingBar pageSizeAllText="All" [pageSizeAll]="pageSizeAll" [pageSizes]="[10]"
+                     pageLinkCount="{{pageLinkCount}}"
+                     [initialPage]="1" [firstLast]="firstLast" [total]="10000" (change)="change($event)">
+        <div *ngIf="isDesktop">
+          <span td-paging-bar-label hide-xs>Row per page:</span>
+          {{pagingBar.range}} <span hide-xs>of {{pagingBar.total}}</span>
+        </div>
+      </td-paging-bar>
       <div class="push-bottom-xl" hide-xs></div>
     </div>
   </div>
