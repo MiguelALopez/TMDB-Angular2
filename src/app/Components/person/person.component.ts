@@ -3,8 +3,12 @@ import {ActivatedRoute, Params} from '@angular/router';
 import {PersonService} from '../../Services/person.service';
 import {CREDENTIALS} from '../../Static/credentials';
 
+// For pagination
 import {TdMediaService} from '@covalent/core';
 import {Subscription} from 'rxjs/Subscription';
+
+// Load service
+import {TdLoadingService} from '@covalent/core';
 
 @Component({
   selector: 'app-person',
@@ -26,10 +30,13 @@ export class PersonComponent implements OnInit, OnDestroy {
   constructor(private personService: PersonService,
               private route: ActivatedRoute,
               private _mediaService: TdMediaService,
-              private _ngZone: NgZone) {
+              private _ngZone: NgZone,
+              private _loadingService: TdLoadingService) {
   }
 
   ngOnInit() {
+    this.registerLoading();
+
     this.updatePerson();
 
     this.checkScreen();
@@ -41,7 +48,8 @@ export class PersonComponent implements OnInit, OnDestroy {
       .getDetails(params['id']))
       .subscribe(movie => {
         this.person = movie;
-        console.log(this.person);
+        this.resolveLoading();
+        // console.log(this.person);
       });
   }
 
@@ -80,6 +88,19 @@ export class PersonComponent implements OnInit, OnDestroy {
 
   getPopularity(popularity: number): string {
     return (Math.floor(popularity * 10) / 10) + '';
+  }
+
+  // Methods for the loading
+  registerLoading(): void {
+    this._loadingService.register('person');
+  }
+
+  resolveLoading(): void {
+    this._loadingService.resolve('person');
+  }
+
+  changeValue(value: number): void { // Usage only enabled on [LoadingMode.Determinate] mode.
+    this._loadingService.setValue('person', value);
   }
 
 }

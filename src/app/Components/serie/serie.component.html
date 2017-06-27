@@ -1,4 +1,4 @@
-<section>
+<section flex *tdLoading="'serie'; type:'circular'; mode:'indeterminate'; strategy:'replace'; color:'primary'">
   <div layout-gt-md="row" layout-xs="column">
     <!-- *************** Image section *************** -->
     <div *ngIf="isDesktop; then desktop else movile;"></div>
@@ -78,11 +78,8 @@
         <div *ngIf="serie['networks'] && serie['networks'].length > 0; else elseBlock"
               class="md-body-1 push-none push-left-sm">
           <span *ngFor="let network of serie['networks']">- {{network['name']}}<br></span>
-          <!--<ul>-->
-            <!--<li *ngFor="let network of serie['networks']">{{network['name']}}</li>-->
-          <!--</ul>-->
+
         </div>
-          <!--{{convertMoney(serie['revenue'])}}</span>-->
 
         <!-- ***************** Homepage *******************-->
         <strong class=" tc-grey-900 push-none push-left-sm push-top-sm">Homepage</strong>

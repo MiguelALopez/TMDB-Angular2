@@ -3,8 +3,12 @@ import {ActivatedRoute, Params} from '@angular/router';
 import {SerieService} from '../../Services/serie.service';
 import {CREDENTIALS} from '../../Static/credentials';
 
+// For pagination
 import {TdMediaService} from '@covalent/core';
 import {Subscription} from 'rxjs/Subscription';
+
+// Load service
+import {TdLoadingService} from '@covalent/core';
 
 @Component({
   selector: 'app-serie',
@@ -26,10 +30,13 @@ export class SerieComponent implements OnInit, OnDestroy {
   constructor(private serieService: SerieService,
               private route: ActivatedRoute,
               private _mediaService: TdMediaService,
-              private _ngZone: NgZone) {
+              private _ngZone: NgZone,
+              private _loadingService: TdLoadingService) {
   }
 
   ngOnInit() {
+    this.registerLoading();
+
     this.updateSeries();
     this.updateCredits();
 
@@ -42,7 +49,8 @@ export class SerieComponent implements OnInit, OnDestroy {
       .getDetails(params['id']))
       .subscribe(serie => {
         this.serie = serie;
-        console.log(this.serie);
+        this.resolveLoading();
+        // console.log(this.serie);
       });
   }
 
@@ -120,7 +128,19 @@ export class SerieComponent implements OnInit, OnDestroy {
       return min + ' - ' + max + ' min';
 
     }
+  }
 
+  // Methods for the loading
+  registerLoading(): void {
+    this._loadingService.register('serie');
+  }
+
+  resolveLoading(): void {
+    this._loadingService.resolve('serie');
+  }
+
+  changeValue(value: number): void { // Usage only enabled on [LoadingMode.Determinate] mode.
+    this._loadingService.setValue('serie', value);
   }
 
 }

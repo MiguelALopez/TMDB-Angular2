@@ -3,8 +3,12 @@ import {ActivatedRoute, Params} from '@angular/router';
 import {MovieService} from '../../Services/movie.service';
 import {CREDENTIALS} from '../../Static/credentials';
 
+// For pagination
 import {TdMediaService} from '@covalent/core';
 import {Subscription} from 'rxjs/Subscription';
+
+// Load service
+import {TdLoadingService} from '@covalent/core';
 
 @Component({
   selector: 'app-movie',
@@ -23,29 +27,60 @@ export class MovieComponent implements OnInit, OnDestroy {
   movie = [];
   credits = [];
 
+  routes: Object[] = [
+    {
+      title: 'Videos',
+      value: '1',
+      icon: 'local_movies',
+    }, {
+      title: 'Images',
+      value: '2',
+      icon: 'image',
+    }, {
+      title: 'Cast',
+      value: '3',
+      icon: 'person',
+    }, {
+      title: 'Recommendations',
+      value: '4',
+      icon: 'stars',
+    },
+  ];
+
+  currentTab = 1;
+
   constructor(private movieService: MovieService,
               private route: ActivatedRoute,
               private _mediaService: TdMediaService,
-              private _ngZone: NgZone) {
+              private _ngZone: NgZone,
+              private _loadingService: TdLoadingService) {
   }
 
   ngOnInit() {
+    this.registerLoading();
+
+    this.updateMovie();
+    this.updateCredits();
+
+    this.checkScreen();
+    this.watchScreen();
+  }
+
+  updateMovie(): void {
     this.route.params.switchMap((params: Params) => this.movieService
       .getDetails(params['id']))
       .subscribe(movie => {
         this.movie = movie;
-        // console.log(this.movie);
+        this.resolveLoading();
       });
-
+  }
+  updateCredits(): void {
     this.route.params.switchMap((params: Params) => this.movieService
       .getCredits(params['id']))
       .subscribe(credits => {
         this.credits = credits;
         console.log(this.credits);
       });
-
-    this.checkScreen();
-    this.watchScreen();
   }
 
   ngOnDestroy(): void {
@@ -126,5 +161,22 @@ export class MovieComponent implements OnInit, OnDestroy {
       }
     }
     return text;
+  }
+
+  changeTab(tab: number): void {
+    this.currentTab = tab;
+  }
+
+  // Methods for the loading
+  registerLoading(): void {
+    this._loadingService.register('movie');
+  }
+
+  resolveLoading(): void {
+    this._loadingService.resolve('movie');
+  }
+
+  changeValue(value: number): void { // Usage only enabled on [LoadingMode.Determinate] mode.
+    this._loadingService.setValue('movie', value);
   }
 }

@@ -20,6 +20,7 @@ import {CovalentSearchModule} from '@covalent/core';
 import {CovalentHttpModule} from '@covalent/http';
 import {CovalentMediaModule} from '@covalent/core';
 import {CovalentPagingModule} from '@covalent/core';
+import {CovalentLoadingModule} from '@covalent/core';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import {CovalentPagingModule} from '@covalent/core';
     CovalentHttpModule,
     CovalentMediaModule,
     CovalentPagingModule,
+    CovalentLoadingModule
 
   ],
   exports: [
@@ -56,6 +58,7 @@ import {CovalentPagingModule} from '@covalent/core';
     CovalentHttpModule,
     CovalentMediaModule,
     CovalentPagingModule,
+    CovalentLoadingModule
   ]
 })
 

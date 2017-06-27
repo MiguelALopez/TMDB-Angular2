@@ -4,8 +4,12 @@ import {CREDENTIALS} from '../../Static/credentials';
 import {GENRES} from '../../Static/genres';
 import {IPageChangeEvent} from '@covalent/core';
 
+// For pagination
 import {TdMediaService} from '@covalent/core';
 import {Subscription} from 'rxjs/Subscription';
+
+// Load service
+import {TdLoadingService} from '@covalent/core';
 
 @Component({
   selector: 'app-list-series',
@@ -36,11 +40,14 @@ export class ListSeriesComponent implements OnInit, OnDestroy {
 
   constructor(private listSeriesService: ListSeriesService,
               private _mediaService: TdMediaService,
-              private _ngZone: NgZone) {
+              private _ngZone: NgZone,
+              private _loadingService: TdLoadingService) {
   }
 
 
   ngOnInit(): void {
+    this.registerLoading();
+
     this.updateSearch(1);
 
     this.checkScreen();
@@ -58,7 +65,7 @@ export class ListSeriesComponent implements OnInit, OnDestroy {
       this.page = serie['page'];
       this.total_pages = serie['total_pages'];
       this.total_results = serie['total_results'];
-      console.log(this.series);
+      this.resolveLoading();
     });
   }
 
@@ -117,6 +124,20 @@ export class ListSeriesComponent implements OnInit, OnDestroy {
    */
   change(event: IPageChangeEvent): void {
     this.event = event;
+    this.registerLoading();
     this.updateSearch(event.page);
+  }
+
+  // Methods for the loading
+  registerLoading(): void {
+    this._loadingService.register('series');
+  }
+
+  resolveLoading(): void {
+    this._loadingService.resolve('series');
+  }
+
+  changeValue(value: number): void { // Usage only enabled on [LoadingMode.Determinate] mode.
+    this._loadingService.setValue('series', value);
   }
 }
